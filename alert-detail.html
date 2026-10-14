@@ -45,7 +45,7 @@ svg text{font-family:inherit}.mk{cursor:pointer}.mk:hover line{stroke-width:2.5}
 <div class="lab">业务影响<span class="ai">模型推断</span></div><div class="txt">互动消息入口与进入路径变化，导致用户找不到私信/互动消息，反馈量较基线翻倍；主要影响 App 40.5.0 Android 端，已波及消息 TAB 打开率与回复率。</div></div>
 <div class="sec"><div class="st">响应定级<span class="lv R1">一级响应</span></div>
 
-<div class="lab">等级变更记录 · 来源：新增信号 / 信号波动 / 解决超时</div><div id="chg"></div><div class="lab">信号源 · 按接入时间排列；卡片底部为该信号引起的等级变更。曲线为连续监控信号，柱为离散上报信号；灰色区域表示信号接入前没有数据</div>
+<div class="lab">最近一次变更 · 来源：新增信号 / 信号波动 / 解决超时</div><div id="chg"></div><div class="lab">信号源 · 按接入时间排列；卡片底部为该信号引起的等级变更。曲线为连续监控信号，柱为离散上报信号；灰色区域表示信号接入前没有数据</div>
 <div class="sig" id="sig"></div>
 <div class="chart"><div class="ch"><span id="ct"></span><span class="mut">顶部色条为响应等级；圆点＝信号达阈值，三角＝定级生效</span></div><div id="subs" class="subs"></div><svg id="sv" width="100%" height="250" viewBox="0 0 920 250"></svg>
 <div class="dur">持续时间：9.17 10:30 报出，当前 10.14 19:31，报出后总时长 27 天 9 小时。</div></div></div></div>
@@ -74,7 +74,9 @@ const N0=[
 const N=[...N0].sort((a,b)=>a.t.localeCompare(b.t));const ST=[['10:31','10:44','三级','L3','#FFE58F'],['10:44','11:03','二级','L2','#FFC069'],['11:03','12:00','一级','L1','#FF9C9C']];const stg=t=>ST.find(x=>t>=x[0]&&t<x[1])||ST[2];
 let ci=0;let cur='soc',hlT=null,ff='全部';
 const first=id=>S.find(s=>s.id==id).at;
-function chg(){const el=document.getElementById('chg');el.innerHTML=[...C].reverse().map((c,i)=>`<div class="cr ${i==0?'now':''}"><span>${c.t}</span><span>${c.from?c.from+' → ':'启动 '}<span class="lvp ${{一级:'L1',二级:'L2',三级:'L3'}[c.to]}">${c.to}</span></span><span class="ty ${{新增信号:'t1',信号波动:'t3',解决超时:'t2'}[c.ty]}">${c.ty}</span><span>${c.ev}</span><span>${c.s?`<a data-s="${c.s}" data-tm="${c.x}">查看信号</a> · `:''}<a data-go="${c.id}">时间线</a></span></div>`).join('');bind(el)}
+function chg(){const el=document.getElementById('chg'),c=C[C.length-1],K={一级:'L1',二级:'L2',三级:'L3'};
+el.innerHTML=`<div class="cr now" style="grid-template-columns:48px 130px 74px 1fr auto"><span>${c.t}</span><span>${c.from} → <span class="lvp ${K[c.to]}">${c.to}</span></span><span class="ty ${{新增信号:'t1',信号波动:'t3',解决超时:'t2'}[c.ty]}">${c.ty}</span><span>${c.ev}</span><span><a data-s="${c.s}" data-tm="${c.x}">查看信号</a></span></div>
+<div class="mut" style="margin-top:6px">等级路径：${C.map(x=>`<a data-go="${x.id}" data-f="定级"><span class="lvp ${K[x.to]}">${x.to}</span> ${x.t}</a>`).join(' → ')} <a data-go="c1" data-f="定级" style="margin-left:8px">在时间线中查看全部定级记录 ↓</a></div>`;bind(el)}
 function sig(){const el=document.getElementById('sig');el.innerHTML=[...S].sort((a,b)=>first(a.id).localeCompare(first(b.id))).map(s=>{const k=C.filter(c=>c.s==s.id).length;return `<div class="sc ${s.id==cur?'on':''}" data-pick="${s.id}"><b>${s.n}</b>${s.cur}<div class="mut">${s.sub}</div><div class="stl">${C.filter(c=>c.s==s.id).length?C.filter(c=>c.s==s.id).map(c=>`<span class="lvp ${{一级:'L1',二级:'L2',三级:'L3'}[c.to]}">${c.t} ${c.from?'升':'启动'}${c.to}</span>`).join(' '):`<span class="mut">${s.at} 接入 · 未触发变更</span>`}</div></div>`}).join('');el.querySelectorAll('[data-pick]').forEach(c=>c.onclick=()=>{cur=c.dataset.pick;ci=0;hlT=null;sig();draw()})}
 function draw(){const s0=S.find(x=>x.id==cur),sb=s0.subs?s0.subs[ci]:{},s=Object.assign({},s0,sb,{n:s0.n}),L=50,R=900,Tp=46,B=215;
 const mn=t=>{const[h,m]=t.split(':');return +h*60+ +m},X=t=>L+(mn(t)-600)/120*(R-L),XI=i=>X(T[i]);
@@ -98,7 +100,7 @@ if(hlT){const i=T.indexOf(hlT);if(i>=0&&s.d[i]!=null)g+=`<circle cx="${XI(i)}" c
 const sv=document.getElementById('sv');sv.innerHTML=`<defs><pattern id="hat" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line y2="6" stroke="#E5E6EB" stroke-width="2"/></pattern></defs>`+g;bind(sv)}
 function tl(){const ft=document.getElementById('ft'),el=document.getElementById('tl');ft.innerHTML=['全部','感知','定级','止损','解决'].map(f=>`<span class="${f==ff?'on':''}">${f}</span>`).join('');ft.querySelectorAll('span').forEach(x=>x.onclick=()=>{ff=x.textContent;tl()});
 el.innerHTML=N.filter(n=>ff=='全部'||n.ty==ff).map(n=>`<div class="nd" id="${n.id}"><span class="t">${n.t}</span><div class="nh">${n.ti}<span class="ty" style="background:none;border-left:2px solid #C9CDD4;border-radius:0;color:#646A73">${n.ty}</span>${n.s?`<a style="font-weight:400;font-size:12px" data-s="${n.s}" data-tm="${n.tm}">在信号源中查看 ↑</a>`:''}<span class="src">${n.src}</span></div><div class="nb">${n.b}</div></div>`).join('');bind(el)}
-function bind(r){r.querySelectorAll('[data-go]').forEach(e=>e.onclick=()=>{const n=document.getElementById(e.dataset.go);if(!n)return;document.querySelectorAll('.nd').forEach(x=>x.classList.remove('hl'));n.classList.add('hl');n.scrollIntoView({behavior:'smooth',block:'center'})});
+function bind(r){r.querySelectorAll('[data-go]').forEach(e=>e.onclick=()=>{if(e.dataset.f&&ff!=e.dataset.f){ff=e.dataset.f;tl()}const n=document.getElementById(e.dataset.go);if(!n)return;document.querySelectorAll('.nd').forEach(x=>x.classList.remove('hl'));n.classList.add('hl');n.scrollIntoView({behavior:'smooth',block:'center'})});
 r.querySelectorAll('[data-s]').forEach(e=>e.onclick=()=>{cur=e.dataset.s;ci=0;hlT=e.dataset.tm||null;sig();draw();document.querySelector('.chart').scrollIntoView({behavior:'smooth',block:'center'})})}
 chg();sig();draw();tl();
 </script></body></html>
