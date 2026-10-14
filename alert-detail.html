@@ -56,21 +56,21 @@ const C=[{id:'c1',t:'10:31',x:'10:30',from:'',to:'三级',ty:'新增信号',s:'v
 {id:'c3',t:'11:03',x:'11:00',from:'二级',to:'一级',ty:'信号波动',s:'soc',sub:'微博热榜',ev:'微博热搜升至第 10 位（阈值：第 10 位）'}];
 const S=[
 {id:'soc',at:'10:40',n:'社媒榜单',cur:'微博/抖音/知乎热榜 · 最佳当前第 9 名',sub:'最高第 6 名 · 在榜 1h20m',inv:1,u:'名，越往上越靠前',subs:[{n:'微博热榜',d:[null,null,null,null,30,22,10,8,6,9,15,25,null],th:[{v:30,l:'进榜第 30 位 · 二级'},{v:10,l:'第 10 位 · 一级'}]},{n:'抖音热榜',d:[null,null,null,null,null,41,36,33,34,38,44,null,null],th:[{v:30,l:'进榜第 30 位 · 二级'},{v:10,l:'第 10 位 · 一级'}]},{n:'知乎热榜',d:[null,null,null,null,null,48,44,40,37,39,45,null,null],th:[{v:30,l:'进榜第 30 位 · 二级'},{v:10,l:'第 10 位 · 一级'}]}]},
-{id:'voc',at:'10:30',n:'VoC 客服反馈',cur:'3 个三级标签告警中',sub:'按标签各自基线与阈值监控',u:'条/10min',subs:[{n:'找不到互动消息入口',d:[11,12,14,39,42,46,50,53,51,44,33,23,17],base:12,th:[{v:36,l:'告警阈值 36（基线 ×3）'}]},{n:'希望恢复消息TAB原样式',d:[7,8,9,26,29,31,33,36,34,30,22,16,12],base:8,th:[{v:20,l:'告警阈值 20（基线 ×2.5）'}]},{n:'消息列表显示不全/未读数异常',d:[4,4,5,15,17,18,19,21,20,17,13,9,7],base:4,th:[{v:16,l:'告警阈值 16（基线 ×4）'}]}]},
+{id:'voc',at:'10:30',n:'VoC 客服反馈',cur:'3 个三级标签告警中',sub:'按标签各自基线与阈值监控',u:'条/10min',subs:[{n:'找不到互动消息入口',p:'P0',d:[11,12,14,39,42,46,50,53,51,44,33,23,17],base:12,th:[{v:36,l:'告警阈值 36（基线 ×3）'}]},{n:'希望恢复消息TAB原样式',p:'P1',d:[7,8,9,26,29,31,33,36,34,30,22,16,12],base:8,th:[{v:20,l:'告警阈值 20（基线 ×2.5）'}]},{n:'消息列表显示不全/未读数异常',p:'P2',d:[4,4,5,15,17,18,19,21,20,17,13,9,7],base:4,th:[{v:16,l:'告警阈值 16（基线 ×4）'}]}]},
 {id:'net',at:'10:40',n:'全网舆情聚合',cur:'实时 28 条 · 基线 12 · <span class="up">↑133%</span>',sub:'累计 312',d:[null,null,null,null,20,28,30,29,26,22,18,15,12],base:12,u:'条'},
 {id:'onc',at:'11:00',n:'oncall 客服上报',cur:'离散上报 · 累计 26 例',sub:'最近 10min 1 例',d:[null,null,null,null,null,null,4,6,8,3,2,2,1],u:'例/10min',kind:'d'},
 {id:'dis',at:'11:10',n:'用户行为 dislike',cur:'实时 12.6% · 基线 8.1% · <span class="up">↑55.6%</span>',sub:'最高 12.6%',d:[8,8.1,8.2,8.3,8.4,8.6,9.5,12.6,12.4,11,10,9.2,8.6],base:8.1,u:'%'}];
 const N0=[
 {id:'n1',t:'10:40',ty:'感知',ti:'社媒榜单',s:'soc',tm:'10:40',src:'社媒热点信号',b:'<span class="snap">上榜快照：微博热搜 第 30 位</span>话题「抖音消息页改版找不到评论」。 <a>打开榜单</a>'},
-{id:'c1',t:'10:31',ty:'定级',ti:'启动三级响应',s:'voc',tm:'10:30',src:'系统规则',b:'事件定级 <b>P0</b>（取自标签「找不到互动消息入口」）；响应等级 <b>三级</b>。新增信号：标签「找不到互动消息入口」超告警阈值。'},
+{id:'c1',t:'10:31',ty:'定级',ti:'启动三级响应',s:'voc',tm:'10:30',src:'系统规则',b:'事件定级 <b>P0</b>（取自标签 <span class="lvp L1">P0</span> 「找不到互动消息入口」）；响应等级 <b>三级</b>。新增信号：标签「找不到互动消息入口」超告警阈值。'},
 {id:'n2',t:'10:30',ty:'感知',ti:'站内 VoC 反馈',s:'voc',tm:'10:30',src:'客服反馈信号',b:'<span class="snap">快照：找不到互动消息入口 39 条（阈值 36）</span><b>原声 AI 总结</b><ul><li>找不到互动消息入口（46%） <a>查看典型反馈</a></li><li>希望恢复消息 TAB 原样式（31%） <a>查看典型反馈</a></li><li>消息列表显示不全/未读数异常（18%） <a>查看典型反馈</a></li></ul>'},
 {id:'n3',t:'10:32',ty:'感知',ti:'用户特征提取',src:'客服反馈信号',b:'<span class="snap">App 版本 40.5.0 占比：基期 10.2% → 53.0%</span><span class="snap">Android 占比：基期 46.9% → 71.1%</span>'},
-{id:'m1',t:'10:32',ty:'定级',ti:'合并体验标签',src:'系统规则',b:'合并 2 个三级标签：希望恢复消息TAB原样式（P1）、消息列表显示不全/未读数异常（P2）。事件定级仍取最高，保持 <b>P0</b>。'},
+{id:'m1',t:'10:32',ty:'定级',ti:'合并体验标签',src:'系统规则',b:'合并 2 个三级标签：<span class="lvp L2">P1</span> 希望恢复消息TAB原样式、<span class="lvp L3">P2</span> 消息列表显示不全/未读数异常。事件定级仍取最高，保持 <b>P0</b>。'},
 {id:'c2',t:'10:44',ty:'定级',ti:'响应等级 三级 → 二级',s:'soc',tm:'10:40',src:'系统规则',b:'新增信号：<span class="snap">上微博热搜第 30 位</span>'},
 {id:'n4',t:'11:00',ty:'感知',ti:'oncall 客服上报',s:'onc',tm:'11:00',src:'oncall 信号',b:'<span class="snap">接入快照：首批 4 例</span>'},
 {id:'c3',t:'11:03',ty:'定级',ti:'响应等级 二级 → 一级',s:'soc',tm:'11:00',src:'系统规则',b:'信号波动：<span class="snap">微博热搜升至第 10 位</span>'}];
 const N=[...N0].sort((a,b)=>a.t.localeCompare(b.t));const ST=[['10:31','10:44','三级','L3','#FFE58F'],['10:44','11:03','二级','L2','#FFC069'],['11:03','12:00','一级','L1','#FF9C9C']];const stg=t=>ST.find(x=>t>=x[0]&&t<x[1])||ST[2];
-let ci=0;let cur='soc',hlT=null,ff='全部';
+let ci=0;let cur='soc',hlT=null,ff='全部',so='按时间';
 const first=id=>S.find(s=>s.id==id).at;
 function chg(){const el=document.getElementById('chg'),c=C[C.length-1],K={一级:'L1',二级:'L2',三级:'L3'};
 el.innerHTML=`<div class="cr now" style="grid-template-columns:48px 130px 74px 1fr auto"><span>${c.t}</span><span>${c.from} → <span class="lvp ${K[c.to]}">${c.to}</span></span><span class="ty ${{新增信号:'t1',信号波动:'t3',解决超时:'t2'}[c.ty]}">${c.ty}</span><span>${c.ev}</span><span><a data-s="${c.s}" data-tm="${c.x}">查看信号</a></span></div>
@@ -79,8 +79,8 @@ function sig(){const el=document.getElementById('sig');el.innerHTML=[...S].sort(
 function draw(){const s0=S.find(x=>x.id==cur),sb=s0.subs?s0.subs[ci]:{},s=Object.assign({},s0,sb,{n:s0.n}),L=50,R=900,Tp=46,B=215;
 const mn=t=>{const[h,m]=t.split(':');return +h*60+ +m},X=t=>L+(mn(t)-600)/120*(R-L),XI=i=>X(T[i]);
 const vals=s.d.filter(v=>v!=null),mx=Math.max(...vals,...(s.th||[]).map(h=>h.v),s.base||0)*1.15,Y=v=>s.inv?Tp+(v/mx)*(B-Tp):B-(v/mx)*(B-Tp);
-document.getElementById('subs').innerHTML=s0.subs?s0.subs.map((x,i)=>`<span class="sb ${i==ci?'on':''}" data-ci="${i}">${x.n}${C.filter(c=>c.s==cur&&c.sub==x.n).map(c=>` <em>${c.t} ${c.from?'升':'启动'}${c.to}</em>`).join('')}</span>`).join(''):'';document.querySelectorAll('[data-ci]').forEach(e=>e.onclick=()=>{ci=+e.dataset.ci;hlT=null;draw()});
-document.getElementById('ct').innerHTML=`<b>当前趋势：${s.n}${s0.subs?' · '+sb.n:''}</b> <span class="mut">（${s.u}${s.kind=='d'?' · 离散上报':''}）</span>`;let g='';
+document.getElementById('subs').innerHTML=s0.subs?s0.subs.map((x,i)=>`<span class="sb ${i==ci?'on':''}" data-ci="${i}">${x.p?`<span class="lvp ${{P0:'L1',P1:'L2',P2:'L3'}[x.p]}">${x.p}</span> `:''}${x.n}${C.filter(c=>c.s==cur&&c.sub==x.n).map(c=>` <em>${c.t} ${c.from?'升':'启动'}${c.to}</em>`).join('')}</span>`).join(''):'';document.querySelectorAll('[data-ci]').forEach(e=>e.onclick=()=>{ci=+e.dataset.ci;hlT=null;draw()});
+document.getElementById('ct').innerHTML=`<b>当前趋势：${s.n}${s0.subs?' · '+(sb.p?sb.p+' ':'')+sb.n:''}</b> <span class="mut">（${s.u}${s.kind=='d'?' · 离散上报':''}）</span>`;let g='';
 // stage strip
 g+=`<text x="${L-8}" y="20" font-size="11" fill="#8F959E" text-anchor="end">响应</text>`;
 ST.forEach(b=>{const x1=X(b[0]),x2=X(b[1]);g+=`<rect x="${x1}" y="10" width="${x2-x1}" height="14" fill="${b[4]}" opacity=".55"/><text x="${(x1+x2)/2}" y="21" font-size="10.5" fill="#5A3E00" text-anchor="middle">${b[2]}</text>`});
@@ -96,8 +96,11 @@ const li=s.d.length-1-[...s.d].reverse().findIndex(v=>v!=null);if(li<s.d.length-
 C.filter(c=>c.s==cur&&(!c.sub||c.sub==sb.n)).forEach(c=>{const i=T.indexOf(c.x),x=XI(i),y=Y(s.d[i]),xd=X(c.t),lb=(c.from?'升':'启动')+c.to;g+=`<g style="cursor:pointer" data-go="${c.id}"><line x1="${x}" y1="${y}" x2="${xd}" y2="24" stroke="#9B51E0" stroke-dasharray="2 3"/><path d="M${xd} 24 l-5 6 h10 z" fill="#9B51E0"/><circle cx="${x}" cy="${y}" r="6" fill="#9B51E0" stroke="#fff" stroke-width="2"/><rect x="${x+8}" y="${y-26}" width="124" height="18" rx="4" fill="#fff" stroke="#9B51E0"/><text x="${x+70}" y="${y-13}" font-size="10.5" fill="#9B51E0" text-anchor="middle">${c.x} 达阈值 → ${c.t} ${lb}</text></g>`});
 if(hlT){const i=T.indexOf(hlT);if(i>=0&&s.d[i]!=null)g+=`<circle cx="${XI(i)}" cy="${Y(s.d[i])}" r="10" fill="none" stroke="#F5C400" stroke-width="3"/>`}
 const sv=document.getElementById('sv');sv.innerHTML=`<defs><pattern id="hat" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line y2="6" stroke="#E5E6EB" stroke-width="2"/></pattern></defs>`+g;bind(sv)}
-function tl(){const ft=document.getElementById('ft'),el=document.getElementById('tl');ft.innerHTML=['全部','感知','定级','止损','解决'].map(f=>`<span class="${f==ff?'on':''}">${f}</span>`).join('');ft.querySelectorAll('span').forEach(x=>x.onclick=()=>{ff=x.textContent;tl()});
-el.innerHTML=N.filter(n=>ff=='全部'||n.ty==ff).map(n=>`<div class="nd" id="${n.id}"><span class="t">${n.t}</span><div class="nh">${n.ti}<span class="ty" style="background:none;border-left:2px solid #C9CDD4;border-radius:0;color:#646A73">${n.ty}</span>${n.s?`<a style="font-weight:400;font-size:12px" data-s="${n.s}" data-tm="${n.tm}">在信号源中查看 ↑</a>`:''}<span class="src">${n.src}</span></div><div class="nb">${n.b}</div></div>`).join('');bind(el)}
+function tl(){const ft=document.getElementById('ft'),el=document.getElementById('tl');ft.innerHTML=['全部','感知','定级','止损','解决'].map(f=>`<span class="${f==ff?'on':''}">${f}</span>`).join('');
+const G=['社媒热点信号','客服反馈信号','oncall 信号'],nd=n=>`<div class="nd" id="${n.id}"><span class="t">${n.t}</span><div class="nh">${n.ti}<span class="ty" style="background:none;border-left:2px solid #C9CDD4;border-radius:0;color:#646A73">${n.ty}</span>${n.s?`<a style="font-weight:400;font-size:12px" data-s="${n.s}" data-tm="${n.tm}">在信号源中查看 ↑</a>`:''}<span class="src">${n.src}</span></div><div class="nb">${n.b}</div></div>`,L=N.filter(n=>ff=='全部'||n.ty==ff);
+ft.innerHTML+=ff=='感知'?`<span style="border:0;padding:0;margin:0 8px 0 4px;color:#C9CDD4;cursor:default">|</span>`+['按时间','按信号源'].map(o=>`<span data-so="${o}" class="${o==so?'on':''}">${o}</span>`).join(''):'';
+ft.querySelectorAll('span:not([data-so])').forEach((x,i)=>{if(i<5)x.onclick=()=>{ff=x.textContent;tl()}});ft.querySelectorAll('[data-so]').forEach(x=>x.onclick=e=>{e.stopPropagation();so=x.dataset.so;tl()});
+el.innerHTML=ff=='感知'&&so=='按信号源'?G.map(g=>{const a=L.filter(n=>n.src==g);return a.length?`<div style="margin:14px 0 2px -70px;position:relative;z-index:1;background:#fff;padding:2px 0;font-size:12px;color:#646A73;font-weight:600">${g} · ${a.length}</div>`+a.map(nd).join(''):''}).join(''):L.map(nd).join('');bind(el)}
 function bind(r){r.querySelectorAll('[data-go]').forEach(e=>e.onclick=()=>{if(e.dataset.f&&ff!=e.dataset.f){ff=e.dataset.f;tl()}const n=document.getElementById(e.dataset.go);if(!n)return;document.querySelectorAll('.nd').forEach(x=>x.classList.remove('hl'));n.classList.add('hl');n.scrollIntoView({behavior:'smooth',block:'center'})});
 r.querySelectorAll('[data-s]').forEach(e=>e.onclick=()=>{cur=e.dataset.s;ci=0;hlT=e.dataset.tm||null;sig();draw();document.querySelector('.chart').scrollIntoView({behavior:'smooth',block:'center'})})}
 chg();sig();draw();tl();bind(document.querySelector('.sec'));
