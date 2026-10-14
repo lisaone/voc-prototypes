@@ -25,7 +25,7 @@ svg text{font-family:inherit}.mk{cursor:pointer}.mk:hover line{stroke-width:2.5}
 .nd{position:relative;margin-bottom:10px;border:1px solid #EFF0F2;border-radius:8px;padding:10px 12px;background:#FCFCFD;transition:.3s}
 .nd:before{content:"";position:absolute;left:-17px;top:13px;width:9px;height:9px;border-radius:50%;background:#fff;border:2px solid #3370FF}
 .nd .t{position:absolute;left:-70px;top:9px;font-size:12px;color:#646A73;width:44px;text-align:right}
-.tl.flat{padding-left:0}.tl.flat:before,.tl.flat .nd:before{display:none}.tl.flat .nd .t{display:none}
+.tl.flat:before,.tl.flat .nd:before{display:none}.tl.flat .nd .t{display:none}
 .nd.hl{background:#FFFBE6;border-color:#F5C400}
 .nh{display:flex;align-items:center;gap:8px;font-weight:600}.ty{font-size:11px;font-weight:400;border-left:2px solid #C9CDD4;padding-left:5px;color:#646A73}.src{margin-left:auto;font-size:11px;font-weight:400;color:#8F959E;border:1px solid #E5E6EB;border-radius:10px;padding:0 8px}
 .nb{margin-top:6px;line-height:1.8;font-size:12.5px}.snap{display:inline-block;background:#F2F3F5;border-radius:4px;padding:1px 8px;margin-right:6px}
@@ -49,7 +49,7 @@ svg text{font-family:inherit}.mk{cursor:pointer}.mk:hover line{stroke-width:2.5}
 <div class="dur">持续时间：9.17 10:30 报出，当前 10.14 19:31，报出后总时长 27 天 9 小时。</div></div></div></div>
 
 <div class="panel"><div class="ph">报警处理时间线 <small>只记录每个节点发生时的快照；完整趋势见上方「响应定级 · 信号源」</small></div>
-<div class="filt" style="margin-top:10px" id="ft"></div><div class="tl" id="tl"></div></div>
+<div class="filt" style="margin-top:10px" id="ft"></div><div id="sob" style="padding-left:70px"></div><div class="tl" id="tl" style="display:flow-root"></div></div>
 </div><script>
 const T=['10:00','10:10','10:20','10:30','10:40','10:50','11:00','11:10','11:20','11:30','11:40','11:50','12:00'];
 const C=[{id:'c1',t:'10:31',x:'10:30',from:'',to:'三级',ty:'新增信号',s:'voc',sub:'找不到互动消息入口',ev:'三级标签「找不到互动消息入口」反馈 39 条/10min，超告警阈值 36，事件生成'},
@@ -107,9 +107,9 @@ let L;const nd=n=>`<div class="nd" id="${n.id}"><span class="t">${n.t}</span><di
 ft.querySelectorAll('span').forEach(x=>x.onclick=()=>{ff=x.textContent;tl()});
 const K={一级:'L1',二级:'L2',三级:'L3'},mc=(g,m)=>`<div class="nd" id="g-${m.s}"><span class="t">${m.p[0][0]}</span><div class="nh">${m.ti}<span class="ty" style="background:none;border-left:2px solid #C9CDD4;border-radius:0;color:#646A73">感知 · 已合并 ${m.p.length} 个时点</span><a style="font-weight:400;font-size:12px" data-s="${m.s}" data-tm="${m.p[0][0]}">在信号源中查看 ↑</a><span class="src">${g}</span></div><div class="nb"><div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:4px;margin:4px 0 6px">${m.p.map((q,i)=>`${i?'<span style="color:#C9CDD4;padding-top:3px">→</span>':''}<span style="display:inline-block;border:1px solid ${q[2]?'#9B51E0':'#E5E6EB'};border-radius:4px;padding:3px 8px;font-size:12px"><b>${q[0]}</b> ${q[1]}${q[2]?`<br><a data-go="${q[2]}" data-f="定级" style="font-size:11px">引起 ${q[3]} ↓</a>`:''}</span>`).join('')}</div>${m.x}</div></div>`;
 L=N.filter(n=>ff=='全部'||n.ty==ff);let h='';
-el.classList.remove('flat');if(ff=='感知'){h=`<div style="display:flex;align-items:center;gap:8px;margin:10px 0 4px;padding:6px 10px;background:#F7F8FA;border-radius:6px;font-size:12px;color:#646A73"><b style="color:#1F2329">感知节点</b><span class="filt" id="so" style="margin:0">${['按时间','按信号源'].map(o=>`<span data-so="${o}" class="${o==so?'on':''}">${o}</span>`).join('')}</span><span class="mut">${so=='按信号源'?'同一信号源的多次感知合并为一张卡片，展示演变及引起的等级变更':'每次感知单独成节点，按时间排列'}</span></div>`;
+if(ff!='感知')el.style.minHeight='';el.classList.remove('flat');const sob=document.getElementById('sob');sob.innerHTML='';if(ff=='感知'){sob.innerHTML=`<div style="display:flex;align-items:center;gap:8px;margin:10px 0 4px;padding:6px 10px;background:#F7F8FA;border-radius:6px;font-size:12px;color:#646A73"><b style="color:#1F2329">感知节点</b><span class="filt" id="so" style="margin:0">${['按时间','按信号源'].map(o=>`<span data-so="${o}" class="${o==so?'on':''}">${o}</span>`).join('')}</span><span class="mut" style="flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${so=='按信号源'?'同一信号源的多次感知合并为一张卡片，展示演变及引起的等级变更':'每次感知单独成节点，按时间排列'}</span></div>`;
 if(so=='按信号源'){L=Object.entries(M).map(([g,m])=>({t:m.p[0][0],g,m}));el.classList.add('flat')}}
-el.innerHTML=h+L.map(n=>n.m?mc(n.g,n.m):nd(n)).join('');el.querySelectorAll('[data-so]').forEach(x=>x.onclick=()=>{so=x.dataset.so;tl()});bind(el)}
+el.innerHTML=h+L.map(n=>n.m?mc(n.g,n.m):nd(n)).join('');sob.querySelectorAll('[data-so]').forEach(x=>x.onclick=()=>{if(so==x.dataset.so)return;const y=window.scrollY;el.style.minHeight=el.offsetHeight+'px';so=x.dataset.so;tl();window.scrollTo(0,y)});bind(el)}
 function bind(r){r.querySelectorAll('[data-go]').forEach(e=>e.onclick=()=>{if(e.dataset.f&&ff!=e.dataset.f){ff=e.dataset.f;tl()}const n=document.getElementById(e.dataset.go);if(!n)return;document.querySelectorAll('.nd').forEach(x=>x.classList.remove('hl'));n.classList.add('hl');n.scrollIntoView({behavior:'smooth',block:'center'})});
 r.querySelectorAll('[data-s]').forEach(e=>e.onclick=()=>{cur=e.dataset.s;ci=0;hlT=e.dataset.tm||null;sig();draw();document.querySelector('.chart').scrollIntoView({behavior:'smooth',block:'center'})})}
 chg();sig();draw();tl();bind(document.querySelector('.sec'));
