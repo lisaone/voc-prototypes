@@ -37,10 +37,7 @@ svg text{font-family:inherit}.mk{cursor:pointer}.mk:hover line{stroke-width:2.5}
 <div class="panel"><div class="ph">应急响应概览</div>
 <div class="sec"><div class="st">事件定级<span class="lv P0">P0</span></div>
 <div class="lab">定级来源 · 合并到本事件的体验三级标签，取最高定级；不随信号热度变化</div>
-<div class="tg"><div class="tr hd"><span>体验三级标签</span><span>标签定级</span><span>合并时间</span><span></span></div>
-<div class="tr top1"><span>社交-消息TAB-找不到互动消息入口</span><span><span class="lvp L1">P0</span></span><span>10:30</span><span class="mx">取此定级</span></div>
-<div class="tr"><span>社交-消息TAB-希望恢复消息TAB原样式</span><span><span class="lvp L2">P1</span></span><span>10:32</span><span></span></div>
-<div class="tr"><span>社交-消息TAB-消息列表显示不全/未读数异常</span><span><span class="lvp L3">P2</span></span><span>10:32</span><span></span></div></div>
+<div class="txt"><a data-go="c1" data-f="定级"><b>社交-消息TAB-找不到互动消息入口</b> <span class="lvp L1">P0</span></a> <span class="mx">取此定级</span>，<a data-go="m1" data-f="定级">社交-消息TAB-希望恢复消息TAB原样式 <span class="lvp L2">P1</span></a>，<a data-go="m1" data-f="定级">社交-消息TAB-消息列表显示不全/未读数异常 <span class="lvp L3">P2</span></a></div>
 <div class="lab">问题描述<span class="ai">模型推断</span></div><div class="txt">消息 TAB 的展示与进入路径发生变化，用户集中反馈找不到互动消息、希望恢复原样式；异常主要集中于 App 40.5.0 的 Android 端。</div>
 <div class="lab">业务影响<span class="ai">模型推断</span></div><div class="txt">互动消息入口与进入路径变化，导致用户找不到私信/互动消息，反馈量较基线翻倍；主要影响 App 40.5.0 Android 端，已波及消息 TAB 打开率与回复率。</div></div>
 <div class="sec"><div class="st">响应定级<span class="lv R1">一级响应</span></div>
@@ -68,6 +65,7 @@ const N0=[
 {id:'c1',t:'10:31',ty:'定级',ti:'启动三级响应',s:'voc',tm:'10:30',src:'系统规则',b:'事件定级 <b>P0</b>（取自标签「找不到互动消息入口」）；响应等级 <b>三级</b>。新增信号：标签「找不到互动消息入口」超告警阈值。'},
 {id:'n2',t:'10:30',ty:'感知',ti:'站内 VoC 反馈',s:'voc',tm:'10:30',src:'客服反馈信号',b:'<span class="snap">快照：找不到互动消息入口 39 条（阈值 36）</span><b>原声 AI 总结</b><ul><li>找不到互动消息入口（46%） <a>查看典型反馈</a></li><li>希望恢复消息 TAB 原样式（31%） <a>查看典型反馈</a></li><li>消息列表显示不全/未读数异常（18%） <a>查看典型反馈</a></li></ul>'},
 {id:'n3',t:'10:32',ty:'感知',ti:'用户特征提取',src:'客服反馈信号',b:'<span class="snap">App 版本 40.5.0 占比：基期 10.2% → 53.0%</span><span class="snap">Android 占比：基期 46.9% → 71.1%</span>'},
+{id:'m1',t:'10:32',ty:'定级',ti:'合并体验标签',src:'系统规则',b:'合并 2 个三级标签：希望恢复消息TAB原样式（P1）、消息列表显示不全/未读数异常（P2）。事件定级仍取最高，保持 <b>P0</b>。'},
 {id:'c2',t:'10:44',ty:'定级',ti:'响应等级 三级 → 二级',s:'soc',tm:'10:40',src:'系统规则',b:'新增信号：<span class="snap">上微博热搜第 30 位</span>'},
 {id:'n4',t:'11:00',ty:'感知',ti:'oncall 客服上报',s:'onc',tm:'11:00',src:'oncall 信号',b:'<span class="snap">接入快照：首批 4 例</span>'},
 {id:'c3',t:'11:03',ty:'定级',ti:'响应等级 二级 → 一级',s:'soc',tm:'11:00',src:'系统规则',b:'信号波动：<span class="snap">微博热搜升至第 10 位</span>'}];
@@ -102,5 +100,5 @@ function tl(){const ft=document.getElementById('ft'),el=document.getElementById(
 el.innerHTML=N.filter(n=>ff=='全部'||n.ty==ff).map(n=>`<div class="nd" id="${n.id}"><span class="t">${n.t}</span><div class="nh">${n.ti}<span class="ty" style="background:none;border-left:2px solid #C9CDD4;border-radius:0;color:#646A73">${n.ty}</span>${n.s?`<a style="font-weight:400;font-size:12px" data-s="${n.s}" data-tm="${n.tm}">在信号源中查看 ↑</a>`:''}<span class="src">${n.src}</span></div><div class="nb">${n.b}</div></div>`).join('');bind(el)}
 function bind(r){r.querySelectorAll('[data-go]').forEach(e=>e.onclick=()=>{if(e.dataset.f&&ff!=e.dataset.f){ff=e.dataset.f;tl()}const n=document.getElementById(e.dataset.go);if(!n)return;document.querySelectorAll('.nd').forEach(x=>x.classList.remove('hl'));n.classList.add('hl');n.scrollIntoView({behavior:'smooth',block:'center'})});
 r.querySelectorAll('[data-s]').forEach(e=>e.onclick=()=>{cur=e.dataset.s;ci=0;hlT=e.dataset.tm||null;sig();draw();document.querySelector('.chart').scrollIntoView({behavior:'smooth',block:'center'})})}
-chg();sig();draw();tl();
+chg();sig();draw();tl();bind(document.querySelector('.sec'));
 </script></body></html>
