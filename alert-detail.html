@@ -1,0 +1,93 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8"><title>报警详情</title><style>
+body{margin:0;background:#F5F6F8;font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;color:#1F2329;font-size:13px}
+.w{max-width:1000px;margin:0 auto;padding:18px 24px 60px}a{color:#3370FF;cursor:pointer;text-decoration:none}
+.top{display:flex;align-items:center;gap:10px}.top h1{font-size:16px;margin:0;flex:1}
+.tag{font-size:11px;border-radius:4px;padding:2px 6px;background:#F2F3F5;color:#646A73}.red{background:#FFF1F0;color:#D83931}
+.btn{border:1px solid #BACEFD;color:#3370FF;border-radius:6px;padding:4px 12px;background:#fff}
+.panel{background:#fff;border:1px solid #E5E6EB;border-radius:12px;padding:16px 18px;margin-top:14px}
+.ph{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px}.ph small{font-weight:400;color:#8F959E;font-size:12px}
+.sec{border:1px solid #EFF0F2;border-radius:10px;padding:14px;margin-top:12px}
+.st{display:flex;align-items:center;gap:8px;font-weight:600;border-left:3px solid #3370FF;padding-left:8px}
+.lv{margin-left:auto;font-weight:700;border-radius:6px;padding:4px 12px}.P0{background:#FFF1F0;color:#D83931}.R2{background:#EEF3FF;color:#3370FF}
+.lab{color:#8F959E;font-size:12px;margin:10px 0 4px}.txt{background:#F7F8FA;border-radius:6px;padding:8px 10px;line-height:1.7}
+.ai{font-size:10px;color:#3370FF;background:#EEF3FF;border-radius:3px;padding:0 4px;margin-left:4px}
+.why{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#F7F9FF;border:1px solid #DCE6FF;border-radius:8px;padding:8px 10px;margin-top:10px;font-size:12px}
+.why b{color:#3370FF}.mut{color:#8F959E;font-size:12px}
+.sig{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}
+.sc{border:1px solid #E5E6EB;border-radius:8px;padding:8px 10px;cursor:pointer;position:relative;font-size:11.5px;line-height:1.6}
+.sc b{display:block;font-size:12.5px}.sc.on{border-color:#2BB58A;background:#F2FBF7;box-shadow:0 0 0 1px #2BB58A}
+.sc .trg{position:absolute;top:-9px;right:8px;background:#3370FF;color:#fff;font-size:10px;border-radius:3px;padding:0 5px}
+.up{color:#F54A45}
+.chart{margin-top:12px;border:1px solid #EFF0F2;border-radius:8px;padding:10px 12px}.ch{display:flex;justify-content:space-between;font-size:12px}
+svg text{font-family:inherit}.mk{cursor:pointer}.mk:hover line{stroke-width:2.5}
+.dur{font-size:12px;color:#646A73;margin-top:6px}
+.tl{position:relative;margin-top:12px;padding-left:70px}.tl:before{content:"";position:absolute;left:58px;top:6px;bottom:6px;width:2px;background:#E5E6EB}
+.nd{position:relative;margin-bottom:10px;border:1px solid #EFF0F2;border-radius:8px;padding:10px 12px;background:#FCFCFD;transition:.3s}
+.nd:before{content:"";position:absolute;left:-17px;top:13px;width:9px;height:9px;border-radius:50%;background:#fff;border:2px solid #3370FF}
+.nd .t{position:absolute;left:-70px;top:9px;font-size:12px;color:#646A73;width:44px;text-align:right}
+.nd.hl{background:#FFFBE6;border-color:#F5C400}
+.nh{display:flex;align-items:center;gap:8px;font-weight:600}.ty{font-size:11px;font-weight:400;border-left:2px solid #C9CDD4;padding-left:5px;color:#646A73}.src{margin-left:auto;font-size:11px;font-weight:400;color:#8F959E;border:1px solid #E5E6EB;border-radius:10px;padding:0 8px}
+.nb{margin-top:6px;line-height:1.8;font-size:12.5px}.snap{display:inline-block;background:#F2F3F5;border-radius:4px;padding:1px 8px;margin-right:6px}
+.nb ul{margin:4px 0;padding-left:18px}.filt span{border:1px solid #E5E6EB;border-radius:14px;padding:3px 12px;margin-right:6px;font-size:12px;cursor:pointer}.filt .on{border-color:#3370FF;color:#3370FF;background:#EEF3FF}
+.stg{display:grid;grid-template-columns:2fr 1fr 2fr;gap:8px;margin-top:6px;font-size:11.5px;text-align:center}.stg span{border-radius:4px;padding:3px}.s3{background:#FFF7E8;color:#C26A00}.sx{background:#F5EEFF;color:#7B3FD0}.s2{background:#EEF3FF;color:#3370FF}.sg{display:inline-block;font-size:10.5px;border-radius:3px;padding:0 5px;margin-bottom:3px}.g3{background:#FFF7E8;color:#C26A00}.gx{background:#F5EEFF;color:#7B3FD0}.g2{background:#EEF3FF;color:#3370FF}.cr{display:grid;grid-template-columns:48px 130px 74px 1fr auto;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #F2F3F5;font-size:12.5px}.cr.now{font-weight:600}
+.lvp{font-size:11px;border-radius:4px;padding:1px 6px}.L1{background:#FFF1F0;color:#D83931}.L2{background:#FFF7E8;color:#C26A00}.L3{background:#FFFBE0;color:#8A6D00}
+.ty{font-size:11px;border-radius:4px;padding:1px 6px;text-align:center}.t1{background:#EEF3FF;color:#3370FF}.t2{background:#F5EEFF;color:#7B3FD0}
+.sc .trg{background:#9B51E0}.sc.off{color:#C9CDD4;cursor:default;background:#FAFAFB}.R1{background:#FFF1F0;color:#D83931}.stl{margin-top:5px;display:flex;flex-wrap:wrap;gap:4px}.stl .lvp{font-size:10.5px}.subs{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 2px}.sb{border:1px solid #E5E6EB;border-radius:6px;padding:4px 12px;font-size:12px;cursor:pointer;background:#fff}.sb.on{border-color:#2BB58A;color:#147A57;background:#F2FBF7}.sb em{font-style:normal;font-size:10.5px;color:#7B3FD0}</style></head><body><div class="w">
+<div class="top"><h1>9.17-【处理进度：待跟进】-一级响应-P0-社交·消息TAB·其他「消息TAB」问题反馈异常波动</h1><span class="tag red">待跟进</span><span class="btn">状态操作</span></div>
+<div class="panel"><div class="ph">应急响应概览</div>
+<div class="sec"><div class="st">事件定级<span class="lv P0">P0</span></div>
+<div class="lab">相关体验标签</div><span class="tag">社交-消息TAB-其他「消息TAB」问题</span> <span class="tag">社交-消息TAB-消息显示异常</span> <span class="tag">社交-消息TAB-入口与样式变更</span>
+<div class="lab">问题描述<span class="ai">模型推断</span></div><div class="txt">消息 TAB 的展示与进入路径发生变化，用户集中反馈找不到互动消息、希望恢复原样式；异常主要集中于 App 40.5.0 的 Android 端。</div>
+<div class="lab">业务影响<span class="ai">模型推断</span></div><div class="txt">互动消息入口与进入路径变化，导致用户找不到私信/互动消息，反馈量较基线翻倍；主要影响 App 40.5.0 Android 端，已波及消息 TAB 打开率与回复率。</div></div>
+<div class="sec"><div class="st">响应定级<span class="lv R1">一级响应</span></div>
+
+<div class="lab">等级变更记录</div><div id="chg"></div><div class="lab">信号源 · 按接入时间排列；底部标注接入时所处的响应区间，或该信号触发的等级变更；趋势图背景色为各响应区间</div>
+<div class="sig" id="sig"></div>
+<div class="chart"><div class="ch"><span id="ct"></span><span class="mut">只显示该信号自己触发的变更，点击打点定位到时间线</span></div><div id="subs" class="subs"></div><svg id="sv" width="100%" height="240" viewBox="0 0 920 240"></svg>
+<div class="dur">持续时间：9.17 10:30 报出，当前 10.14 19:31，报出后总时长 27 天 9 小时。</div></div></div></div>
+
+<div class="panel"><div class="ph">报警处理时间线 <small>只记录每个节点发生时的快照；完整趋势见上方「响应定级 · 信号源」</small></div>
+<div class="filt" style="margin-top:10px" id="ft"></div><div class="tl" id="tl"></div></div>
+</div><script>
+const T=['10:00','10:10','10:20','10:30','10:40','10:50','11:00','11:10','11:20','11:30','11:40','11:50','12:00'];
+const C=[{id:'c1',t:'10:30',from:'',to:'三级',ty:'指标阈值',s:'soc',sub:'微博热榜',ev:'微博热搜进入第 30 位（阈值：第 30 位）'},
+{id:'c2',t:'10:50',from:'三级',to:'二级',ty:'指标阈值',s:'soc',sub:'微博热榜',ev:'微博热搜进入第 20 位（阈值：第 20 位）'},
+{id:'c3',t:'11:20',from:'二级',to:'一级',ty:'SLA 超时',ev:'待跟进状态持续 15 分钟，基线 10 分钟'}];
+const S=[
+{id:'soc',at:'10:30',n:'社媒榜单',cur:'微博/抖音/知乎热榜 · 最佳当前第 9 名',sub:'最高第 6 名 · 在榜 1h20m',inv:1,u:'名，越往上越靠前',subs:[{n:'微博热榜',d:[50,50,45,30,24,20,12,8,6,9,15,25,50],th:[{v:30,l:'第 30 位 · 三级'},{v:20,l:'第 20 位 · 二级'}]},{n:'抖音热榜',d:[50,50,50,50,46,41,36,33,34,38,44,50,50],th:[{v:30,l:'第 30 位 · 三级'},{v:20,l:'第 20 位 · 二级'}]},{n:'知乎热榜',d:[50,50,50,50,50,48,44,40,37,39,45,50,50],th:[{v:30,l:'第 30 位 · 三级'},{v:20,l:'第 20 位 · 二级'}]}]},
+{id:'voc',at:'10:30',n:'VoC 客服反馈',cur:'实时 99 · 基线 70 · <span class="up">↑41.02%</span>',sub:'累计 574',u:'条/10min',subs:[{n:'全部标签',d:[24,25,30,84,92,99,108,116,110,96,72,50,38],base:70},{n:'找不到互动消息入口',d:[11,12,14,39,42,46,50,53,51,44,33,23,17],base:32},{n:'希望恢复消息TAB原样式',d:[7,8,9,26,29,31,33,36,34,30,22,16,12],base:22},{n:'消息列表显示不全/未读数异常',d:[4,4,5,15,17,18,19,21,20,17,13,9,7],base:13}]},
+{id:'net',at:'10:40',n:'全网舆情聚合',cur:'实时 28 条 · 基线 12 · <span class="up">↑133%</span>',sub:'累计 312',d:[10,11,12,14,20,28,30,29,26,22,18,15,12],base:12,u:'条'},
+{id:'onc',at:'11:00',n:'oncall 客服上报',cur:'实时 18 例',sub:'累计 26 例',d:[0,0,0,0,0,0,4,10,18,16,12,8,6],u:'例'},
+{id:'dis',at:'11:10',n:'用户行为 dislike',cur:'实时 12.6% · 基线 8.1% · <span class="up">↑55.6%</span>',sub:'最高 12.6%',d:[8,8.1,8.2,8.3,8.4,8.6,9.5,12.6,12.4,11,10,9.2,8.6],base:8.1,u:'%'}];
+const N=[
+{id:'n1',t:'10:30',ty:'感知',ti:'社媒榜单',s:'soc',tm:'10:30',src:'社媒热点信号',b:'<span class="snap">上榜快照：微博热搜 第 30 位</span>话题「抖音消息页改版找不到评论」。 <a>打开榜单</a>'},
+{id:'c1',t:'10:30',ty:'定级',ti:'启动三级响应',s:'soc',tm:'10:30',src:'系统规则',b:'事件定级 <b>P0</b>；响应等级 <b>三级</b>。指标阈值：微博热搜进入第 30 位。'},
+{id:'n2',t:'10:30',ty:'感知',ti:'站内 VoC 反馈',s:'voc',tm:'10:30',src:'客服反馈信号',b:'<span class="snap">快照：基线 70 → 当前 84，<span class="up">↑20.0%</span></span><b>原声 AI 总结</b><ul><li>找不到互动消息入口（46%） <a>查看典型反馈</a></li><li>希望恢复消息 TAB 原样式（31%） <a>查看典型反馈</a></li><li>消息列表显示不全/未读数异常（18%） <a>查看典型反馈</a></li></ul>'},
+{id:'n3',t:'10:32',ty:'感知',ti:'用户特征提取',src:'客服反馈信号',b:'<span class="snap">App 版本 40.5.0 占比：基期 10.2% → 53.0%</span><span class="snap">Android 占比：基期 46.9% → 71.1%</span>'},
+{id:'c2',t:'10:50',ty:'定级',ti:'响应等级 三级 → 二级',s:'soc',tm:'10:50',src:'系统规则',b:'指标阈值：<span class="snap">微博热搜进入第 20 位</span>'},
+{id:'n4',t:'11:00',ty:'感知',ti:'oncall 客服上报',s:'onc',tm:'11:00',src:'oncall 信号',b:'<span class="snap">接入快照：首批 4 例</span>'},
+{id:'c3',t:'11:20',ty:'定级',ti:'响应等级 二级 → 一级',src:'系统规则',b:'SLA 超时：<span class="snap">待跟进状态持续 15 分钟，基线 10 分钟</span>'}];
+const ST=[['10:30','10:50','三级','L3','#FFFBE0'],['10:50','11:20','二级','L2','#FFF4E5'],['11:20','12:00','一级','L1','#FFEFEF']];const stg=t=>ST.find(x=>t>=x[0]&&t<x[1])||ST[2];
+let ci=0;let cur='soc',hlT=null,ff='全部';
+const first=id=>S.find(s=>s.id==id).at;
+function chg(){const el=document.getElementById('chg');el.innerHTML=[...C].reverse().map((c,i)=>`<div class="cr ${i==0?'now':''}"><span>${c.t}</span><span>${c.from?c.from+' → ':'启动 '}<span class="lvp ${{一级:'L1',二级:'L2',三级:'L3'}[c.to]}">${c.to}</span></span><span class="ty ${c.ty=='指标阈值'?'t1':'t2'}">${c.ty}</span><span>${c.ev}</span><span>${c.s?`<a data-s="${c.s}" data-tm="${c.t}">查看信号</a> · `:''}<a data-go="${c.id}">时间线</a></span></div>`).join('');bind(el)}
+function sig(){const el=document.getElementById('sig');el.innerHTML=[...S].sort((a,b)=>first(a.id).localeCompare(first(b.id))).map(s=>{const k=C.filter(c=>c.s==s.id).length;return `<div class="sc ${s.id==cur?'on':''}" data-pick="${s.id}">${k?`<span class="trg">触发 ${k} 次</span>`:''}<b>${s.n}</b>${s.cur}<div class="mut">${s.sub}</div><div class="stl">${C.filter(c=>c.s==s.id).length?C.filter(c=>c.s==s.id).map(c=>`<span class="lvp ${{一级:'L1',二级:'L2',三级:'L3'}[c.to]}">${c.t} ${c.from?'升':'启动'}${c.to}</span>`).join(' '):`<span class="lvp ${stg(s.at)[3]}">${s.at} 接入 · ${stg(s.at)[2]}期间</span>`}</div></div>`}).join('');el.querySelectorAll('[data-pick]').forEach(c=>c.onclick=()=>{cur=c.dataset.pick;ci=0;hlT=null;sig();draw()})}
+function draw(){const s0=S.find(x=>x.id==cur),sb=s0.subs?s0.subs[ci]:{},s=Object.assign({},s0,sb,{n:s0.n}),L=50,R=900,Tp=24,B=205,mx=Math.max(...s.d)*1.15,X=i=>L+i*(R-L)/(T.length-1),Y=v=>s.inv?Tp+(v/mx)*(B-Tp):B-(v/mx)*(B-Tp);
+document.getElementById('subs').innerHTML=s0.subs?s0.subs.map((x,i)=>{const k=C.filter(c=>c.s==cur&&c.sub==x.n).length;return `<span class="sb ${i==ci?'on':''}" data-ci="${i}">${x.n}${k?` <em>触发 ${k} 次</em>`:''}</span>`}).join(''):'';document.querySelectorAll('[data-ci]').forEach(e=>e.onclick=()=>{ci=+e.dataset.ci;hlT=null;draw()});
+document.getElementById('ct').innerHTML=`<b>当前趋势：${s.n}${s0.subs?' · '+sb.n:''}</b> <span class="mut">（${s.u}）</span>`;let g='';
+for(let k=0;k<=3;k++){const y=Tp+k*(B-Tp)/3;g+=`<line x1="${L}" x2="${R}" y1="${y}" y2="${y}" stroke="#F0F1F3"/><text x="${L-8}" y="${y+4}" font-size="11" fill="#8F959E" text-anchor="end">${Math.round(s.inv?mx*k/3:mx*(3-k)/3)}</text>`}
+T.forEach((t,i)=>{if(i%3==0)g+=`<text x="${X(i)}" y="${B+20}" font-size="11" fill="#8F959E" text-anchor="middle">${t}</text>`});
+(s.th||[]).forEach(h=>g+=`<line x1="${L}" x2="${R}" y1="${Y(h.v)}" y2="${Y(h.v)}" stroke="#9B51E0" stroke-dasharray="5 4" opacity=".7"/><text x="${R}" y="${Y(h.v)-5}" font-size="11" fill="#9B51E0" text-anchor="end">${h.l}</text>`);
+if(s.base)g+=`<line x1="${L}" x2="${R}" y1="${Y(s.base)}" y2="${Y(s.base)}" stroke="#3370FF" stroke-dasharray="3 3"/><text x="${R}" y="${Y(s.base)-5}" font-size="11" fill="#3370FF" text-anchor="end">基线 ${s.base}</text>`;
+ST.forEach(b=>{const x1=X(T.indexOf(b[0])),x2=X(T.indexOf(b[1]));g=`<rect x="${x1}" y="${Tp}" width="${x2-x1}" height="${B-Tp}" fill="${b[4]}"/><text x="${(x1+x2)/2}" y="${Tp+12}" font-size="11" fill="#8F959E" text-anchor="middle">${b[2]}响应</text>`+g});
+const pts=s.d.map((v,i)=>`${X(i)},${Y(v)}`).join(' ');if(!s.inv)g+=`<polygon points="${X(0)},${B} ${pts} ${X(T.length-1)},${B}" fill="#2BB58A" opacity=".1"/>`;
+g+=`<polyline points="${pts}" fill="none" stroke="#2BB58A" stroke-width="2.4"/>`;
+C.filter(c=>c.s==cur&&(!c.sub||c.sub==sb.n)).forEach(c=>{const i=T.indexOf(c.t),x=X(i),y=Y(s.d[i]),lb=(c.from?'升':'启动')+c.to;g+=`<g style="cursor:pointer" data-go="${c.id}"><circle cx="${x}" cy="${y}" r="6" fill="#9B51E0" stroke="#fff" stroke-width="2"/><rect x="${x-44}" y="${y+10}" width="88" height="18" rx="4" fill="#fff" stroke="#9B51E0"/><text x="${x}" y="${y+23}" font-size="11" fill="#9B51E0" text-anchor="middle">${c.t} ${lb}</text></g>`});
+if(hlT){const i=T.indexOf(hlT);if(i>=0)g+=`<circle cx="${X(i)}" cy="${Y(s.d[i])}" r="10" fill="none" stroke="#F5C400" stroke-width="3"/>`}
+const sv=document.getElementById('sv');sv.innerHTML=g;bind(sv)}
+function tl(){const ft=document.getElementById('ft'),el=document.getElementById('tl');ft.innerHTML=['全部','感知','定级','止损','解决'].map(f=>`<span class="${f==ff?'on':''}">${f}</span>`).join('');ft.querySelectorAll('span').forEach(x=>x.onclick=()=>{ff=x.textContent;tl()});
+el.innerHTML=N.filter(n=>ff=='全部'||n.ty==ff).map(n=>`<div class="nd" id="${n.id}"><span class="t">${n.t}</span><div class="nh">${n.ti}<span class="ty" style="background:none;border-left:2px solid #C9CDD4;border-radius:0;color:#646A73">${n.ty}</span>${n.s?`<a style="font-weight:400;font-size:12px" data-s="${n.s}" data-tm="${n.tm}">在信号源中查看 ↑</a>`:''}<span class="src">${n.src}</span></div><div class="nb">${n.b}</div></div>`).join('');bind(el)}
+function bind(r){r.querySelectorAll('[data-go]').forEach(e=>e.onclick=()=>{const n=document.getElementById(e.dataset.go);if(!n)return;document.querySelectorAll('.nd').forEach(x=>x.classList.remove('hl'));n.classList.add('hl');n.scrollIntoView({behavior:'smooth',block:'center'})});
+r.querySelectorAll('[data-s]').forEach(e=>e.onclick=()=>{cur=e.dataset.s;ci=0;hlT=e.dataset.tm||null;sig();draw();document.querySelector('.chart').scrollIntoView({behavior:'smooth',block:'center'})})}
+chg();sig();draw();tl();
+</script></body></html>

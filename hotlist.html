@@ -1,0 +1,115 @@
+<html><head><meta charset="utf-8"><style>
+body{margin:0;background:#F4F3EE;font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;color:#1A1B1C;padding:20px}
+.c{max-width:900px;margin:auto}.top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+h1{font-size:18px;margin:0}.tabs span{font-size:12px;padding:3px 10px;border-radius:5px;background:#ECEBE5;color:#6B7280;margin-right:3px}.tabs .on{background:#1A1B1C;color:#fff}
+.meta{margin-left:auto;font-size:12px;color:#9CA3AF}
+.g{background:#fff;border:1px solid #E4E3DD;border-radius:10px;margin-bottom:10px;overflow:hidden}
+.gh{display:flex;justify-content:space-between;font-size:12px;font-weight:600;padding:6px 14px;background:#FAFAF7;border-bottom:1px solid #F0EFEA}.gh i{font-style:normal;font-weight:400;color:#9CA3AF}
+.r{display:grid;grid-template-columns:56px 1fr 150px 68px 70px 150px 64px;align-items:center;padding:7px 14px;border-bottom:1px solid #F4F3EE;font-size:13px}
+.r:last-child{border-bottom:none}.rk{font-weight:700;font-size:15px}
+.t{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.l{font-size:11px;color:#6B7280;background:#F0EFEA;border-radius:4px;padding:1px 5px;margin-left:6px;font-weight:400}
+.x{display:block;font-size:11px;color:#5B8DEF;font-weight:400;margin-top:1px}.m{font-size:12px;color:#6B7280}
+.sp{display:flex;align-items:center;gap:6px}.rr{font-size:11px;color:#6B7280}
+.s{font-size:11px;border-radius:10px;padding:2px 8px;text-align:center}.up{background:#FDECEC;color:#EA6668}.new{background:#FEF3DC;color:#D48806}.down{background:#EAF7E4;color:#52C41A}.flat{background:#F0F1F3;color:#6B7280}
+.hd{font-size:11px;color:#9CA3AF;padding:5px 14px;background:#fff}
+.f{font-size:11px;color:#9CA3AF;padding:7px 14px;border-top:1px solid #F4F3EE}
+.note{font-size:11.5px;color:#6B7280;line-height:1.7;margin-top:6px}
+.sp{position:relative;cursor:crosshair}.tip{position:absolute;background:#1A1B1C;color:#fff;font-size:11px;padding:3px 7px;border-radius:4px;white-space:nowrap;pointer-events:none;transform:translate(-50%,-120%);z-index:5}
+.vl{position:absolute;top:0;bottom:0;width:1px;background:#1A1B1C55;pointer-events:none}
+.r{cursor:pointer}.det{padding:10px 14px 14px 48px;background:#FAFAF7;border-bottom:1px solid #F0EFEA;font-size:12px;color:#6B7280}
+.det .bar{display:flex;justify-content:space-between;margin-bottom:4px}.det a{color:#5B8DEF;cursor:pointer}
+.det table{border-collapse:collapse;margin-top:8px;font-size:12px}.det td{padding:2px 14px 2px 0}
+.out .t,.out .m{color:#9CA3AF}.outt{background:#F0EFEA;color:#9CA3AF}.day{font-size:13px;font-weight:600;background:#fff;border:1px solid #E4E3DD;border-radius:6px;padding:3px 9px}
+.tool{display:flex;align-items:center;gap:8px;margin:0 0 10px;font-size:12px;color:#6B7280}
+.seg{display:inline-flex;background:#ECEBE5;border-radius:6px;padding:2px}.seg b{font-weight:500;padding:3px 10px;border-radius:5px;cursor:pointer}.seg b.on{background:#fff;color:#1A1B1C;box-shadow:0 1px 2px #0001}
+select{font:inherit;font-size:12px;border:1px solid #E4E3DD;border-radius:6px;padding:3px 6px;background:#fff}
+.dir{border:1px solid #E4E3DD;border-radius:6px;padding:3px 8px;background:#fff;cursor:pointer}
+.hd span[data-s]{cursor:pointer}.hd span[data-s]:hover{color:#1A1B1C}.hd .act{color:#1A1B1C;font-weight:600}
+.ch{font-size:11px;border-radius:4px;padding:1px 5px;margin-right:6px;color:#fff}
+.reset{color:#5B8DEF;cursor:pointer;margin-left:auto}
+
+.c{max-width:1180px}body{padding:28px 32px}
+.top{margin-bottom:18px}.tool{margin-bottom:14px;gap:10px}
+.g{border-radius:12px}
+.r{grid-template-columns:64px minmax(0,1fr) 150px 110px 64px 84px 170px 72px!important;padding:14px 20px!important;column-gap:12px}
+.r.hd{padding:10px 20px!important;font-size:12px!important}
+.t{font-size:14px}.l{margin-left:8px}.ch{margin-right:8px;padding:2px 6px}
+.x{margin-top:4px}.m{font-size:13px}.rk{font-size:17px}
+.note{margin-top:12px}
+.g{overflow:visible}.s{justify-self:end;min-width:52px}
+.sp{position:relative;cursor:crosshair}.tip{position:absolute;background:#1A1B1C;color:#fff;font-size:11px;padding:3px 7px;border-radius:4px;white-space:nowrap;pointer-events:none;transform:translate(-50%,-110%);z-index:5}
+.vl{position:absolute;top:2px;bottom:2px;width:1px;background:#1A1B1C55;pointer-events:none}
+.det{padding:12px 20px 16px 96px;background:#FAFAF7;border-bottom:1px solid #F0EFEA;font-size:12px;color:#6B7280}
+.det .bar{display:flex;justify-content:space-between;margin-bottom:4px;max-width:640px}.det a{color:#5B8DEF;cursor:pointer}
+.det table{border-collapse:collapse;margin-top:8px;font-size:12px}.det td{padding:2px 14px 2px 0}
+.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid #E4E3DD;border-radius:14px;padding:3px 10px 3px 4px;font-size:12px;white-space:nowrap;background:#fff}.pill i{font-style:normal;color:#fff;font-size:10px;width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}.out .pill{color:#9CA3AF}a.tl{color:inherit;text-decoration:none;display:block}a.tl:hover{color:#5B8DEF;text-decoration:underline}a.pl{color:inherit;text-decoration:none;cursor:pointer}a.pl:hover{border-color:#5B8DEF;color:#5B8DEF}.pill em{font-style:normal;font-size:10px;color:#9CA3AF}</style></head><body><div class="c">
+<div class="top"><h1>社媒热点榜</h1><span class="day">10-13</span><span class="tabs"><span class="on">近 24h</span><span>近 7 天</span></span><span class="meta">更新 11:12 · 抖音相关舆情</span></div>
+<div class="tool"><span>排序</span><select id="key"><option value="def">默认（渠道权重 → 当前排名）</option><option value="rank">当前排名</option><option value="first">首次上榜时间</option><option value="list">渠道 · 榜单</option><option value="peak">最高排名</option><option value="dur">在榜时长</option><option value="delta">较上次变化</option></select>
+ <span class="dir" id="dir">升序 ↑</span><span class="reset" id="reset">恢复默认</span></div>
+<div id="list"></div>
+<div class="note">也可以直接点表头排序，再点一次切换升降序。已出榜条目始终排在最后。点击标题进入对应平台话题页；微博渠道标签可进入话题落地页。悬停曲线查看每 5 分钟排名。数字为示例。</div></div>
+<script>
+function series(r){const K=r.k,n=Math.max(2,Math.round(r.dur*12)),k=K.slice(0,-1),out=[];
+ const st=new Date(2026,9,13+r.fd,+r.first.slice(0,2),+r.first.slice(3));
+ for(let j=0;j<n-1;j++){const f=k.length>1?j/(n-2)*(k.length-1):0,a=Math.floor(f),b=Math.min(a+1,k.length-1);
+  out.push({t:new Date(st.getTime()+j*300000),r:Math.round(k[a]+(k[b]-k[a])*(f-a))});}
+ out.push({t:new Date(st.getTime()+(n-1)*300000),r:K.at(-1)});return out}
+const fmt=d=>`${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+function hover(box,data,x0,w){let tip,vl;box.addEventListener('mousemove',e=>{const R=box.getBoundingClientRect();let x=e.clientX-R.left;
+ const j=Math.max(0,Math.min(data.length-1,Math.round((x-x0)/w*(data.length-1))));x=x0+j/(data.length-1)*w;
+ if(!tip){tip=document.createElement('div');tip.className='tip';vl=document.createElement('div');vl.className='vl';box.append(vl,tip)}
+ tip.style.left=x+'px';tip.style.top=(box.classList.contains('bigwrap')?'30px':'0px');vl.style.left=x+'px';tip.textContent=`${fmt(data[j].t)} · 第 ${data[j].r} 名`});
+ box.addEventListener('mouseleave',()=>{tip&&tip.remove();vl&&vl.remove();tip=vl=null})}
+function big(data,col){const W=640,H=150,P=34,rs=data.map(d=>d.r),lo=Math.min(...rs),hi=Math.max(...rs)+(Math.max(...rs)==Math.min(...rs)?1:0);
+ const X=j=>P+j/(data.length-1)*(W-P-10),Y=r=>12+(r-lo)/(hi-lo)*(H-40);let g='';
+ [lo,Math.round((lo+hi)/2),hi].forEach(r=>g+=`<line x1="${P}" x2="${W-10}" y1="${Y(r)}" y2="${Y(r)}" stroke="#eee"/><text x="2" y="${Y(r)+4}" font-size="10" fill="#9CA3AF">第${r}</text>`);
+ const pk=rs.indexOf(lo),last=data.length-1;
+ g+=`<polyline points="${data.map((d,j)=>X(j)+','+Y(d.r)).join(' ')}" fill="none" stroke="${col}" stroke-width="2"/>`;
+ const pts=[[0,'首次上榜','start']];if(data[last].r!=lo&&pk!=0)pts.push([pk,'峰值','middle']);pts.push([last,data[last].r==lo?'当前（峰值）':'当前','end']);
+ pts.forEach(([j,l,a])=>g+=`<circle cx="${X(j)}" cy="${Y(data[j].r)}" r="3.5" fill="${col}"/><text x="${X(j)}" y="${H-6}" font-size="10" fill="#6B7280" text-anchor="${a}">${l} ${fmt(data[j].t).slice(6)} · 第${data[j].r}</text>`);
+ return `<div class="bigwrap" style="position:relative;width:${W}px"><svg width="${W}" height="${H}">${g}</svg></div>`}
+
+function bind(){document.querySelectorAll('.r[data-i]').forEach(row=>{const r=R[+row.dataset.i],d=series(r),sp=row.querySelector('.sp');
+ hover(sp,d,22,110);const col=r.out?'#C9CBD0':CH[r.ch].c;
+})}
+
+const CH={微博:{c:'#EA6668',w:1},抖音:{c:'#F08080',w:2},知乎:{c:'#D48806',w:3},快手:{c:'#5BA8A0',w:4}};
+function tl(r){const q=encodeURIComponent(r.t);return {'微博':'https://s.weibo.com/weibo?q='+q,'抖音':'https://www.douyin.com/search/'+q,'知乎':'https://www.zhihu.com/search?type=content&q='+q,'快手':'https://www.kuaishou.com/search/video?searchKey='+q}[r.ch]}
+function pl(r){return r.ch=='微博'?'https://m.s.weibo.com/vtopic/detail_new?q='+encodeURIComponent(r.t):null}
+const R=[
+{ch:'微博',t:'鸿蒙抖音屏蔽尊界报道',l:'飙升榜',first:'19:40',fd:-1,dur:15,peak:3,k:[22,18,14,9,5,3]},
+{ch:'微博',t:'某持续发酵的社会话题',l:'热搜榜',first:'11:20',fd:-1,dur:23.9,peak:1,k:[30,20,8,1,4,12,17,18]},
+{ch:'微博',t:'某已出榜的娱乐话题',l:'热搜榜',first:'13:00',fd:-1,dur:14,peak:8,k:[30,20,8,10,25,40],out:'03:00'},
+{ch:'抖音',t:'王嘉尔抖音居然发了闪电舞',l:'上升榜',first:'10:40',fd:0,dur:.5,peak:12,k:[38,30,20,15,12]},
+{ch:'抖音',t:'蒋龙翻牌抖音网友的祝福',l:'热榜',first:'07:42',fd:0,dur:4,peak:33,k:[34,33,33,33,33]},
+{ch:'抖音',t:'蒋龙翻牌抖音网友的吐槽',l:'上升榜',first:'07:45',fd:0,dur:4,peak:45,k:[47,46,45,45,45]},
+{ch:'知乎',t:'如何评价鸿蒙系统中的抖音表现',l:'热榜',first:'10:00',fd:0,dur:3,peak:28,k:[46,40,34,30,29,28]},
+{ch:'快手',t:'网红刘琳琳调侃赵露思爷爷',l:'热榜',first:'23:24',fd:-1,dur:12,peak:36,k:[38,37,36,36,36]}];
+R.forEach(r=>{r.rank=r.out?null:r.k.at(-1);r.delta=r.out?null:r.k.at(-2)-r.k.at(-1);r.ft=r.fd*1440+(+r.first.slice(0,2))*60+(+r.first.slice(3))});
+let st={g:'none',key:'def',asc:true};
+function spark(r){const v=r.k,lo=Math.min(...v),hi=Math.max(...v)||1,c=r.out?'#C9CBD0':CH[r.ch].c,
+ Y=x=>7+(x-lo)/((hi-lo)||1)*18,X=i=>22+i*110/(v.length-1);
+ return `<svg width="160" height="32"><text x="0" y="${Y(v[0])+4}" font-size="10" fill="#9CA3AF">首${v[0]}</text><polyline points="${v.map((x,i)=>X(i)+','+Y(x)).join(' ')}" fill="none" stroke="${c}" stroke-width="1.6"/><circle cx="132" cy="${Y(v.at(-1))}" r="2.5" fill="${c}"/>${r.out?'':`<text x="137" y="${Y(v.at(-1))+4}" font-size="10">${v.at(-1)}</text>`}</svg>`}
+function row(r,showCh){const c=CH[r.ch].c,d=r.delta;
+ const s=r.out?'<span class="s outt">已出榜</span>':d>0?`<span class="s up">↑ ${d}</span>`:d<0?`<span class="s down">↓ ${-d}</span>`:'<span class="s flat">持平</span>';
+ return `<div class="r ${r.out?'out':''}" data-i="${R.indexOf(r)}"><span class="rk" style="color:${r.out?'#C9CBD0':c}">${r.rank??'—'}</span><span><a class="t tl" href="${tl(r)}" target="_blank" title="打开${r.ch}话题页">${r.t}</a></span><span>${pl(r)?`<a class="pill pl" href="${pl(r)}" target="_blank" title="打开微博话题落地页">`:'<span class="pill">'}<i style="background:${r.out?'#C9CBD0':c}">${r.ch[0]}</i>${r.ch}${r.l}${pl(r)?'<em>↗</em></a>':'</span>'}</span><span class="m">${r.first} ${r.fd<0?'<span class="l">跨天</span>':''}</span><span class="m">第${r.peak}</span><span class="m">${r.dur}h${r.out?`<br><small>${r.out} 出榜</small>`:''}</span><span class="sp">${spark(r)}</span>${s}</div>`}
+const HD=[['当前排名','rank'],['标题',null],['渠道 · 榜单','list'],['首次上榜','first'],['最高','peak'],['在榜','dur'],['排名轨迹（首次上榜 → 当前）',null],['较上次','delta']];
+function hd(){return `<div class="r hd">${HD.map(([n,k])=>k?`<span data-s="${k}" class="${st.key==k?'act':''}">${n}${st.key==k?(st.asc?' ↑':' ↓'):''}</span>`:`<span>${n}</span>`).join('')}</div>`}
+function cmp(a,b){if(!!a.out!=!!b.out)return a.out?1:-1;const f={def:r=>CH[r.ch].w*1000+(r.rank??999),rank:r=>r.rank,first:r=>r.ft,list:r=>CH[r.ch].w+r.l,ch:r=>CH[r.ch].w,peak:r=>r.peak,dur:r=>r.dur,delta:r=>r.delta}[st.key];
+ let x=f(a),y=f(b);if(x==null)return 1;if(y==null)return -1;let o=typeof x=='string'?x.localeCompare(y,'zh'):x-y;if(!o)o=(a.rank??999)-(b.rank??999);return st.asc?o:-o}
+function render(){const flat=st.g=='none'||!['def','ch'].includes(st.key)&&st.g=='none';let h='';
+ const rows=[...R].sort(cmp);
+ if(st.g=='ch'){Object.keys(CH).sort((a,b)=>CH[a].w-CH[b].w).forEach(ch=>{const rs=rows.filter(r=>r.ch==ch);if(!rs.length)return;
+  h+=`<div class="g"><div class="gh" style="color:${CH[ch].c}"><span>${ch}</span><i>权重第${CH[ch].w} · ${rs.length} 条（在榜 ${rs.filter(r=>!r.out).length}）</i></div>${hd()}${rs.map(r=>row(r,false)).join('')}</div>`})}
+ else h=`<div class="g">${hd()}${rows.map(r=>row(r,true)).join('')}</div>`;
+ document.getElementById('list').innerHTML=h;bind();
+ document.querySelectorAll('[data-s]').forEach(e=>e.onclick=()=>{const k=e.dataset.s;if(st.key==k)st.asc=!st.asc;else{st.key=k;st.asc=k!='dur'&&k!='delta'}sync()})}
+function sync(){document.getElementById('key').value=st.key;document.getElementById('dir').textContent=st.asc?'升序 ↑':'降序 ↓';
+ render()}
+document.getElementById('key').onchange=e=>{st.key=e.target.value;st.asc=!['dur','delta'].includes(st.key);sync()};
+document.getElementById('dir').onclick=()=>{st.asc=!st.asc;sync()};
+
+document.getElementById('reset').onclick=()=>{st={g:'none',key:'def',asc:true};sync()};
+const q=new URLSearchParams(location.hash.slice(1));if(q.get('g'))st.g=q.get('g');if(q.get('k'))st.key=q.get('k');if(q.get('a'))st.asc=q.get('a')=='1';
+sync();if(q.get('demo')){const sp=document.querySelector('.r[data-i] .sp'),B=sp.getBoundingClientRect();sp.dispatchEvent(new MouseEvent('mousemove',{clientX:B.left+80,clientY:B.top+10}))}
+</script></body></html>

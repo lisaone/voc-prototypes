@@ -1,0 +1,55 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8"><title>异常监控</title><style>
+body{margin:0;font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;background:#F5F6F8;color:#1F2329;font-size:13px}
+.w{max-width:1200px;margin:0 auto;padding:16px 24px}
+.top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.top h1{font-size:18px;margin:0}
+.mut{color:#8F959E;font-size:12px}a{color:#3370FF;text-decoration:none;cursor:pointer}
+.chip{border:1px solid #DEE0E3;background:#fff;border-radius:6px;padding:5px 10px;font-size:12px;white-space:nowrap}
+.chip.g{background:#E8F7F1;border-color:#9AD9C1;color:#147A57}.sp{margin-left:auto}
+.sum{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0 10px}
+.box{background:#fff;border:1px solid #E5E6EB;border-radius:10px;padding:12px 14px;cursor:pointer}.box.on{border-color:#2BB58A;box-shadow:0 0 0 1px #2BB58A}
+.n{font-size:22px;font-weight:700;margin-left:8px;vertical-align:middle}
+.bar{height:5px;background:#E5E6EB;border-radius:3px;margin:10px 0 6px;overflow:hidden}.bar i{display:block;height:100%;background:#2BB58A}
+.P{display:inline-block;color:#fff;font-weight:700;font-size:11px;border-radius:4px;padding:2px 6px;vertical-align:middle}
+.P0{background:#F54A45}.P1{background:#FF8800}.P2{background:#F5C400;color:#5C4400}.ALL{background:#2BB58A}
+.R{display:inline-block;font-size:11px;border-radius:4px;padding:1px 6px;border:1px solid}
+.R1{color:#D83931;border-color:#F8B3AE;background:#FFF1F0}.R2{color:#C26A00;border-color:#FFD08A;background:#FFF7E8}.R3{color:#646A73;border-color:#DEE0E3;background:#F7F8FA}
+.row2{display:flex;align-items:center;gap:8px;margin:4px 0 12px;flex-wrap:wrap}
+.seg{display:inline-flex;background:#ECEDF0;border-radius:6px;padding:2px}.seg b{font-weight:400;font-size:12px;padding:4px 12px;border-radius:5px;cursor:pointer;color:#646A73}.seg b.on{background:#fff;color:#1F2329;font-weight:600;box-shadow:0 1px 2px #0001}
+.tabs{display:flex;gap:4px}.tabs span{padding:4px 12px;border-radius:14px;font-size:12px;color:#646A73}.tabs .on{background:#fff;color:#1F2329;font-weight:600}
+.day{font-weight:600;margin:12px 0 10px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(370px,1fr));gap:14px}
+.card{background:#fff;border:1px solid #E5E6EB;border-radius:10px;padding:14px}
+.hd{display:flex;align-items:center;gap:6px;background:#F7F8FA;border-radius:6px;padding:8px}.hd b{font-size:14px;flex:1;line-height:1.4}
+.chg{font-size:11px;color:#D83931;white-space:nowrap;position:relative;cursor:help}.chg .tip{display:none;position:absolute;right:0;top:20px;z-index:5;background:#1F2329;color:#fff;border-radius:6px;padding:8px 10px;width:220px;line-height:1.7}.chg:hover .tip{display:block}
+.body{display:grid;grid-template-columns:150px 1fr;gap:12px;margin-top:10px;font-size:12px;line-height:1.9}
+.up{color:#F54A45}.ppl span{display:inline-block;border:1px solid #E5E6EB;border-radius:12px;padding:0 8px;margin:2px 4px 2px 0;font-size:11.5px}
+.ft{display:flex;align-items:center;gap:12px;margin-top:10px}.st{font-size:11px;border-radius:4px;padding:2px 6px;background:#EEF3FF;color:#3370FF}.st.ok{background:#E8F7F1;color:#147A57}
+.btn{border:1px solid #DEE0E3;border-radius:6px;padding:4px 12px;background:#fff}.ml{margin-left:auto}
+.fp{background:#fff;border:1px solid #E5E6EB;border-radius:10px;padding:6px 14px;margin:14px 0 8px}.fr{display:flex;align-items:center;gap:6px;padding:7px 0;border-bottom:1px dashed #F0F1F3}.fr:last-child{border:0}.fr>i{font-style:normal;width:64px;color:#8F959E;font-size:12px}.o{padding:3px 12px;border-radius:14px;font-size:12px;cursor:pointer;color:#1F2329;border:1px solid transparent}.o:hover{background:#F2F3F5}.o.on{background:#E8F7F1;border-color:#2BB58A;color:#147A57;font-weight:600}.o.z{color:#C9CDD4}.o em{font-style:normal;color:#8F959E;margin-left:3px}.o.on em{color:#147A57}</style></head><body><div class="w">
+<div class="top"><h1>异常监控</h1><span class="mut">统计周期 2026-10-08 ~ 2026-10-14</span><a>监控策略详情</a>
+<label class="mut"><input type="checkbox"> 我处理的</label>
+<span class="chip g">统计周期 最近 7 天 ▾</span><span class="chip g">监控数据源 客服反馈… ▾</span>
+<span class="chip">筛选标签 ▾</span><span class="chip">是否有AI洞察建议 ▾</span><span class="chip sp">屏蔽管理</span><span class="chip">手动上报</span></div>
+<div class="fp" id="fp"></div><div class="row2"><span class="mut" id="cnt"></span><a id="rst">清空筛选</a><span class="chip ml">批量操作</span></div>
+<div class="day">2026-10-14 ▾</div><div class="cards" id="cards"></div>
+<p class="mut">事件定级（P0/P1/P2，实心色块）只看事情本身；响应等级（一级/二级/三级，描边标签）看热度、舆情等影响，可随时变更。三个维度各自单选、互相独立，可任意先后组合；每个选项后的数字是在其他两个维度当前条件下的事件数。示例数据。</p>
+</div><script>
+const E=[
+{t:'站外通知/红点角标·已打开「站外通知」权限，但收不到',P:'P2',R:'二级',from:'三级',at:'15:20',why:'微博热搜榜第 18 名',n:85,nm:43,b:34,bm:19,r:150,rm:126,st:'已止损',k:[5,3,3,4,4,3,6,9],ppl:['陈巧利','徐鹤文','张文泽','陆明曦'],more:8,per:'10.14 08:30-14:30',base:'10.07-10.13 08:30-14:30',a:['去解决','进群']},
+{t:'激励资产问题·资产提现时进行账号实名遇到问题',P:'P2',R:'三级',n:497,nm:142,b:364,bm:111,r:37,rm:28,st:'已解决',k:[6,6,5,5,4,6,8,7],ppl:['吴文娟','吴光裕','叶子怡','刘洪梅'],more:2,per:'10.14 07:00-13:00',base:'10.07-10.13 07:00-13:00',a:['进群']},
+{t:'作者变现·星图·「全民任务」提现问题咨询',P:'P1',R:'三级',n:150,nm:8,b:48,bm:5,r:213,rm:60,st:'跟进中',k:[2,3,4,6,4,6,7,9],ppl:['张馨月','高梓瑜','张红杉'],more:0,per:'10.14 05:45-11:45',base:'10.07-10.13 05:45-11:45',a:['去解决','进群']}];
+const RL={'一级':'R1','二级':'R2','三级':'R3'};let fP='',fR='';
+const L=()=>E.filter(e=>!fR||e.R==fR);
+function spark(k){const w=150,h=50,m=Math.max(...k);return `<svg width="${w}" height="${h}"><polyline fill="none" stroke="#2BB58A" stroke-width="1.8" points="${k.map((v,i)=>`${i*w/(k.length-1)},${h-4-v/m*(h-10)}`).join(' ')}"/><line x1="0" x2="${w}" y1="${h-4-3/m*(h-10)}" y2="${h-4-3/m*(h-10)}" stroke="#3370FF" stroke-dasharray="3 3"/></svg>`}
+let fS='';const DIM=[['事件定级','P',['P0','P1','P2']],['响应等级','R',['一级','二级','三级']],['状态','st',['待跟进','跟进中','已止损','已解决','已复盘']]];
+const F={P:'',R:'',st:''};const ok=(e,skip)=>Object.keys(F).every(k=>k==skip||!F[k]||e[k]==F[k]);
+function render(){
+fp.innerHTML=DIM.map(([lab,k,vals])=>`<div class="fr"><i>${lab}</i>`+['全部',...vals].map(v=>{const c=E.filter(e=>ok(e,k)&&(v=='全部'||e[k]==v)).length;const on=(F[k]||'全部')==v;return `<span class="o ${on?'on':''} ${!c&&!on?'z':''}" data-k="${k}" data-v="${v}">${k=='P'&&v!='全部'?`<span class="P ${v}" style="font-size:10px;padding:1px 5px">${v}</span>`:v}<em>${c}</em></span>`}).join('')+'</div>').join('');
+fp.querySelectorAll('.o').forEach(o=>o.onclick=()=>{F[o.dataset.k]=o.dataset.v=='全部'?'':o.dataset.v;render()});
+const base=E.filter(e=>ok(e));cnt.textContent=`共 ${base.length} 个事件`;rst.onclick=()=>{F.P=F.R=F.st='';render()};
+cards.innerHTML=base.map(e=>`<div class="card"><div class="hd"><span class="P ${e.P}">${e.P}</span><span class="R ${RL[e.R]}">${e.R}响应</span><b>${e.t}</b>${e.from?`<span class="chg">${e.from}→${e.R} ${e.at}<span class="tip">响应等级变更<br>${e.at} ${e.from} → ${e.R}<br>依据：${e.why}</span></span>`:''}</div>
+<div class="body"><div><span class="mut">反馈趋势</span>${spark(e.k)}</div><div>近6小时反馈量 <b>${e.n}</b>（人工${e.nm}）<br>基线值 ${e.b}（人工${e.bm}）<br>对比基线值 <span class="up">↑${e.r}%</span>（人工 <span class="up">↑${e.rm}%</span>）<div class="ppl"><span class="mut" style="border:0;padding:0">处理人</span> ${e.ppl.map(p=>`<span>${p}</span>`).join('')}${e.more?`<span>+${e.more}</span>`:''}</div></div></div>
+<div class="mut" style="line-height:1.8">数据源 客服反馈数据<br>问题发生周期 ${e.per}<br>对比基线周期 ${e.base}（自然日对比）</div>
+<div class="ft"><span class="st ${e.st=='跟进中'?'':'ok'}">${e.st}</span><a>处理时间线</a><span class="ml"></span>${e.a.map(x=>`<span class="btn">${x}</span>`).join('')}<span>···</span></div></div>`).join('')||'<p class="mut">无匹配事件</p>'}
+render();
+</script></body></html>
