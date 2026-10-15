@@ -49,10 +49,10 @@ ul{margin:4px 0;padding-left:20px;line-height:1.75}li{margin-bottom:4px}
 <div class="box">
  <div><span class="lab">状态：</span><span class="green">跟进中</span>　<span class="lab">报出时间：</span>10.15 14:45　<span class="lab">止损时间：</span><span class="grey">未止损</span></div>
  <div><span class="lab">跟进人：</span><span class="at">@贾怀羽</span>　<span class="lab">体验运营：</span><span class="at">@李超</span>　<span class="lab">研判专家：</span><span class="at">@王琪</span></div>
- <div><span class="lab">反馈量 134 vs 基线 84，突增 <span class="red">60%</span></span>　<a class="grey" style="font-size:12px">报警机制 ›</a></div>
+ <div><span class="lab">近6h累计 反馈量 134 vs 基线 84，突增 <span class="red">60%</span></span>　<a class="grey" style="font-size:12px">报警机制 ›</a></div>
 </div>
-<h4>数据趋势 <span class="tag t-iter">迭代中</span><span class="grey" style="font-size:12px;font-weight:400;margin-left:8px">15分钟粒度 · 自动更新</span></h4>
-<div style="font-size:12px;color:#646a73"><span style="color:#3370ff">━</span> 实际反馈　<span style="color:#b8bec7">┅</span> 基线（同比）　<span style="color:#f54a45">┅</span> 阈值</div><svg id="chart" width="688" height="200"></svg>
+<h4>数据趋势 <span class="tag t-iter">迭代中</span><span class="grey" style="font-size:12px;font-weight:400;margin-left:8px">每15分钟反馈量 · 08:45–14:45 · 自动更新</span></h4>
+<div style="font-size:12px;color:#646a73"><span style="color:#3370ff">━</span> 实际反馈　<span style="color:#b8bec7">┅</span> 基线（同比）　<span style="color:#f54a45">┅</span> 阈值　<span style="display:inline-block;width:12px;height:10px;background:#e5e6eb;vertical-align:-1px"></span><span style="color:#3370ff">┅</span> 数据延迟·可能偏低</div><svg id="chart" width="688" height="200"></svg><div class="grey" style="font-size:12px;margin:2px 0 4px">图中各点为15分钟分时量（标在每段结束时刻），合计即近6h累计：实际 134、基线 84；14:25 后数据延迟，数值可能偏低</div>
 <div style="font-size:13px">拐点 <b>13:30</b>，反馈量 7 vs 基线 3，涨幅 <span class="red">133%</span>　<a>查看数据详情 ›</a></div>
 <h4>用户反馈</h4>
 <h5>原声总结</h5>
@@ -94,17 +94,20 @@ ul{margin:4px 0;padding-left:20px;line-height:1.75}li{margin-bottom:4px}
 const act=[3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,7,9,11,13,15,16];
 const base=[3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4];
 const TH=6, svg=document.getElementById('chart'), W=688,H=200,L=30,R=12,T=14,B=26;
-const x=i=>L+i*(W-L-R)/23, y=v=>T+(H-T-B)*(1-v/18);
+const tx=m=>L+(m-525)*(W-L-R)/360, x=i=>tx(540+i*15), y=v=>T+(H-T-B)*(1-v/18);
 let s='';
 [0,6,12,18].forEach(v=>s+=`<line x1=${L} x2=${W-R} y1=${y(v)} y2=${y(v)} stroke="#eee"/><text x=${L-6} y=${y(v)+4} font-size=10 fill="#8f959e" text-anchor=end>${v}</text>`);
 const lab=i=>{let m=8*60+60+i*15;return String(m/60|0).padStart(2,'0')+':'+String(m%60).padStart(2,'0')};
-[0,4,8,12,16,20,23].forEach(i=>s+=`<text x=${x(i)} y=${H-8} font-size=10 fill="#8f959e" text-anchor=middle>${lab(i)}</text>`);
+const fm=m=>String(m/60|0).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
+s+=`<rect x=${tx(865)} y=${T} width=${tx(885)-tx(865)} height=${H-T-B} fill="#e5e6eb" opacity=".7"/><text x=${tx(865)-4} y=${H-B-6} font-size=10 fill="#646a73" text-anchor=end>数据延迟·可能偏低</text>`;
+[525,585,645,705,765,825,885].forEach(m=>s+=`<text x=${tx(m)} y=${H-8} font-size=10 fill="#8f959e" text-anchor=middle>${fm(m)}</text>`);
+[].forEach(i=>s+=`<text x=${x(i)} y=${H-8} font-size=10 fill="#8f959e" text-anchor=middle>${lab(i)}</text>`);
 s+=`<line x1=${L} x2=${W-R} y1=${y(TH)} y2=${y(TH)} stroke="#f54a45" stroke-dasharray="5,4"/><text x=${L+4} y=${y(TH)-4} font-size=10 fill="#f54a45">阈值</text>`;
 s+=`<polyline fill=none stroke="#b8bec7" stroke-width=1.5 stroke-dasharray="4,3" points="${base.map((v,i)=>x(i)+','+y(v)).join(' ')}"/>`;
-s+=`<polygon fill="rgba(51,112,255,.08)" points="${x(0)},${y(0)} ${act.map((v,i)=>x(i)+','+y(v)).join(' ')} ${x(23)},${y(0)}"/>`;
-s+=`<polyline fill=none stroke="#3370ff" stroke-width=2 points="${act.map((v,i)=>x(i)+','+y(v)).join(' ')}"/>`;
+s+=`<polygon fill="rgba(51,112,255,.08)" points="${x(0)},${y(0)} ${act.map((v,i)=>x(i)+','+y(v)).join(' ')} ${x(23)},${y(0)}"/><line x1=${L} x2=${L} y1=${T} y2=${H-B} stroke="#eee"/><text x=${L+4} y=${T+10} font-size=10 fill="#8f959e">条/15min</text>`;
+s+=`<polyline fill=none stroke="#3370ff" stroke-width=2 points="${act.slice(0,22).map((v,i)=>x(i)+','+y(v)).join(' ')}"/><polyline fill=none stroke="#3370ff" stroke-width=2 stroke-dasharray="5,4" points="${act.slice(21).map((v,i)=>x(i+21)+','+y(v)).join(' ')}"/>`;
 s+=`<circle cx=${x(18)} cy=${y(7)} r=4 fill="#f54a45"/><text x=${x(18)-6} y=${y(7)-8} font-size=11 fill="#f54a45" text-anchor=end>拐点 13:30 · 7 (+133%)</text>`;
-s+=`<circle cx=${x(23)} cy=${y(16)} r=4 fill="#f54a45"/><text x=${x(23)-6} y=${y(16)-6} font-size=11 fill="#f54a45" text-anchor=end>报出 14:45</text>`;
+s+=`<circle cx=${x(23)} cy=${y(16)} r=4 fill="#f54a45"/><text x=${x(23)-6} y=${y(16)+16} font-size=11 fill="#f54a45" text-anchor=end>报出 14:45</text>`;
 svg.innerHTML=s;
 function seg(id,f){const e=document.getElementById(id);e.onclick=ev=>{if(!ev.target.dataset.v)return;e.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b==ev.target));f(ev.target.dataset.v)}}
 seg('segA',v=>{attrP.style.display=v=='pending'?'':'none';attrD.style.display=v=='done'?'':'none'});
