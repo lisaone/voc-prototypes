@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>报出卡片 v1</title>
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>报出卡片 v2</title>
 <style>
 body{margin:0;background:#f2f3f5;font-family:'PingFang SC','Segoe UI',Arial,sans-serif;color:#1f2329;font-size:14px}
 .wrap{width:720px;margin:20px auto}
@@ -32,6 +32,12 @@ ul{margin:4px 0;padding-left:20px;line-height:1.75}li{margin-bottom:4px}
 .msgs .ttl{font-size:13px;color:#646a73;margin-bottom:6px}
 .msg{background:#fff;border:1px solid #dee0e3;border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:13px;line-height:1.7}
 .msg .who{font-size:12px;color:#8f959e}
+.fd{border:1px solid #e5e6eb;border-radius:6px;margin-bottom:6px;font-size:13px}
+.fd summary{list-style:none;cursor:pointer;padding:6px 10px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.fd summary::-webkit-details-marker{display:none}
+.fd .dn{font-weight:600;width:84px}.fd .it.hi b{color:#f54a45}.fd .ex{margin-left:auto;font-size:12px}
+.fd[open] .ex{font-size:0}.fd[open] .ex::after{content:'收起';font-size:12px}
+.fd table{margin:0 10px 8px;width:calc(100% - 20px)}.fd tr.hr td{color:#f54a45}
 </style></head><body><div class="wrap">
 <div class="ctl">原型控制：
  <span>归因状态 <span class="seg" id="segA"><button class="on" data-v="pending">生成中</button><button data-v="done">已完成</button></span></span>
@@ -48,31 +54,26 @@ ul{margin:4px 0;padding-left:20px;line-height:1.75}li{margin-bottom:4px}
 <h4>数据趋势 <span class="tag t-iter">迭代中</span><span class="grey" style="font-size:12px;font-weight:400;margin-left:8px">15分钟粒度 · 自动更新</span></h4>
 <div style="font-size:12px;color:#646a73"><span style="color:#3370ff">━</span> 实际反馈　<span style="color:#b8bec7">┅</span> 基线（同比）　<span style="color:#f54a45">┅</span> 阈值</div><svg id="chart" width="688" height="200"></svg>
 <div style="font-size:13px">拐点 <b>13:30</b>，反馈量 7 vs 基线 3，涨幅 <span class="red">133%</span>　<a>查看数据详情 ›</a></div>
-<h4>一句话结论</h4>
-<div>评论相关反馈 13:30 起持续高于基线，10.15 14:45 达阈值报出；<b>可能原因</b>：评论被吞、无法发布相关反馈集中出现，为新问题。</div>
 <h4>用户反馈</h4>
-<h5>原声AI总结</h5>
-<table><tr><th>问题分类</th><th>占比</th></tr>
-<tr><td>评论被吞 / 无法发布<span class="tag t-new">新问题</span></td><td>20%</td></tr>
-<tr><td>评论排序 / 最热评论查看</td><td>20%</td></tr>
-<tr><td>评论区艾特不到自己</td><td>20%</td></tr>
-<tr><td>评论区自动回复功能</td><td>20%</td></tr>
-<tr><td>账号关联解除</td><td>20%</td></tr></table>
-<h5>典型用户反馈</h5>
-<!-- 凭证标签（录屏/截图）为示例数据 -->
-<ul>
-<li><span class="tag t-ev" style="margin:0 6px 0 0">录屏</span>因评论被吞且无法发布、别人无法查看评论，要求平台告知违规情况并恢复功能。用户咨询点赞别人评论后刷新看不到点赞记录的问题。 <a>查看</a></li>
-<li><span class="tag t-ev" style="margin:0 6px 0 0">截图</span>如何查看最热评论。用户询问抖音app评论排序入口未开放，不更新版本能否看到排序。用户咨询抖音app消息页部分消息点不进去的原因。 <a>查看</a></li>
-<li>在任何评论区包括自己评论区艾特不到自己的解决办法。用户要求平台对上次未正确回复的问题给出正确回复并解决。 <a>查看</a></li>
-<li>开通抖音视频评论区自动回复功能的方法、自行开通自动回复功能是否违反平台规则以及转接企业号人工客服的方式。 <a>查看</a></li>
-<li>已不再使用抖音，希望客服取消手机号与抖音平台及相关平台的关联。用户已注销抖音账号，仍需关联才能在其他平台正常操作，希望客服取消关联。 <a>查看</a></li>
-</ul>
-<h4>归因诊断 <span class="grey" style="font-size:12px;font-weight:400">AI根据报警时刻（10.15 14:45）的反馈信息做归因，仅供参考</span></h4>
+<h5>原声总结</h5>
+<table><tr><th>问题分类</th><th>占比</th><th>典型反馈</th></tr>
+<tr><td>评论被吞 / 无法发布<span class="tag t-new">新问题</span></td><td>32%</td><td><span class="tag t-ev" style="margin:0 6px 0 0">录屏</span>因评论被吞且无法发布、别人无法查看评论，要求平台告知违规情况并恢复功能。 <a>查看</a></td></tr>
+<tr><td>评论区艾特不到自己</td><td>19%</td><td>在任何评论区包括自己评论区艾特不到自己的解决办法。 <a>查看</a></td></tr>
+<tr><td>评论排序 / 最热评论查看</td><td>17%</td><td><span class="tag t-ev" style="margin:0 6px 0 0">截图</span>如何查看最热评论；询问评论排序入口未开放，不更新版本能否看到排序。 <a>查看</a></td></tr>
+<tr><td>评论区自动回复功能</td><td>17%</td><td>开通视频评论区自动回复功能的方法，以及是否违反平台规则。 <a>查看</a></td></tr>
+<tr><td>账号关联解除</td><td>15%</td><td>已注销抖音账号，希望客服取消手机号与抖音平台的关联。 <a>查看</a></td></tr></table>
+<h5>特征分布</h5>
+<!-- 机型、版本分布为示例数据；系统、命中实验与归因结论一致 -->
+<details class="fd"><summary><span class="dn">系统分布</span><span class="it hi">Android <b>78%</b> <span class="grey">基线 52%</span></span><span class="it">iOS <b>20%</b> <span class="grey">基线 44%</span></span><span class="red" style="font-size:12px">贡献度51.3%，对比基线+59条</span><span class="lk ex">展开全部</span></summary><table><tr><th>系统</th><th>占比</th><th>基线占比</th></tr><tr class=hr><td>Android</td><td>78%</td><td>52%</td></tr><tr><td>iOS</td><td>20%</td><td>44%</td></tr><tr><td>鸿蒙</td><td>2%</td><td>4%</td></tr></table></details>
+<details class="fd"><summary><span class="dn">命中实验分布</span><span class="it hi">【评论-sort】nps反转 6（ID 5792431） <b>46%</b> <span class="grey">基线 8%</span></span><span class="it">【评论】输入框样式优化 <b>12%</b> <span class="grey">基线 10%</span></span><span class="lk ex">展开全部</span></summary><table><tr><th>命中实验</th><th>占比</th><th>基线占比</th></tr><tr class=hr><td>【评论-sort】nps反转 6（ID 5792431）</td><td>46%</td><td>8%</td></tr><tr><td>【评论】输入框样式优化</td><td>12%</td><td>10%</td></tr><tr><td>未命中实验</td><td>42%</td><td>82%</td></tr></table></details>
+<details class="fd"><summary><span class="dn">版本分布</span><span class="it">36.2.0 <b>41%</b> <span class="grey">基线 35%</span></span><span class="it">36.1.0 <b>30%</b> <span class="grey">基线 33%</span></span><span class="lk ex">展开全部</span></summary><table><tr><th>版本</th><th>占比</th><th>基线占比</th></tr><tr><td>36.2.0</td><td>41%</td><td>35%</td></tr><tr><td>36.1.0</td><td>30%</td><td>33%</td></tr><tr><td>36.0.0</td><td>18%</td><td>20%</td></tr><tr><td>其他</td><td>11%</td><td>12%</td></tr></table></details>
+<details class="fd"><summary><span class="dn">机型分布</span><span class="it">OPPO Reno 系列 <b>16%</b> <span class="grey">基线 12%</span></span><span class="it">vivo X 系列 <b>14%</b> <span class="grey">基线 11%</span></span><span class="lk ex">展开全部</span></summary><table><tr><th>机型</th><th>占比</th><th>基线占比</th></tr><tr><td>OPPO Reno 系列</td><td>16%</td><td>12%</td></tr><tr><td>vivo X 系列</td><td>14%</td><td>11%</td></tr><tr><td>iPhone 15</td><td>11%</td><td>14%</td></tr><tr><td>其他</td><td>59%</td><td>63%</td></tr></table></details>
+<h4>归因诊断 <span class="grey" style="font-size:12px;font-weight:400">AI根据报警时刻（10.15 14:45）的反馈信息做归因，相关结论仅供参考，请酌情使用</span></h4>
 <div id="attrP"><span class="spin"></span>归因中，预计 10 分钟后自动更新</div>
-<div id="attrD" style="display:none">
-<!-- 归因结论为示例数据 -->
- <div><span class="tag t-fact" style="margin:0 6px 0 0">事实</span>13:30 起「评论被吞 / 无法发布」反馈集中出现，含录屏凭证。</div>
- <div style="margin-top:4px"><span class="tag t-guess" style="margin:0 6px 0 0">推测</span>可能与评论发布审核策略变更有关　<span class="grey">相关性：高</span></div>
+<div id="attrD" style="display:none;line-height:1.8">
+ <div><span class="lab">最可能原因：</span>混合</div>
+ <div><span class="lab">相关度：</span>中</div>
+ <div><span class="lab">一句话结论：</span>本次评论异常主要由实验「【评论-sort】nps反转 6」（ID 5792431）改变了评论排序逻辑，直接引发排序相关咨询（占比17%）和部分展示异常；同时评论服务 aweme.api.comment 在11:24的两次 pod_exec 高风险操作可能导致评论展示/发布功能异常；异常增量主要集中在 Android 端（贡献度51.3%，对比基线+59条）。</div>
 </div>
 <a style="font-size:13px;display:inline-block;margin-top:4px">归因任务执行详情</a>
 <div class="btns" id="btns">
