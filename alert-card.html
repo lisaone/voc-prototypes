@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>报出卡片 v6</title>
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>报出卡片 v7</title>
 <style>
 body{margin:0;background:#f2f3f5;font-family:'PingFang SC','Segoe UI',Arial,sans-serif;color:#1f2329;font-size:14px}
 .wrap{width:720px;margin:20px auto}
@@ -93,16 +93,15 @@ ul{margin:4px 0;padding-left:20px;line-height:1.75}li{margin-bottom:4px}
 // 示例数据：15分钟粒度，08:45-14:45 共24点；实际合计134，基线合计84
 const act=[3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,7,14,22,24,3,1];
 const base=[3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4];
-const TH=10, svg=document.getElementById('chart'), W=688,H=200,L=30,R=12,T=14,B=26;
+const svg=document.getElementById('chart'), W=688,H=200,L=30,R=12,T=14,B=26;
 const tx=m=>L+(m-525)*(W-L-R)/360, x=i=>tx(540+i*15), y=v=>T+(H-T-B)*(1-v/26);
 let s='';
 [0,8,16,24].forEach(v=>s+=`<line x1=${L} x2=${W-R} y1=${y(v)} y2=${y(v)} stroke="#eee"/><text x=${L-6} y=${y(v)+4} font-size=10 fill="#8f959e" text-anchor=end>${v}</text>`);
 const lab=i=>{let m=8*60+60+i*15;return String(m/60|0).padStart(2,'0')+':'+String(m%60).padStart(2,'0')};
 const fm=m=>String(m/60|0).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
-s+=`<rect x=${tx(865)} y=${T} width=${tx(885)-tx(865)} height=${H-T-B} fill="#e5e6eb" opacity=".7"/><text x=${tx(865)-4} y=${H-B-6} font-size=10 fill="#646a73" text-anchor=end>数据延迟·可能偏低</text>`;
+s+=`<rect x=${x(21)} y=${T} width=${x(23)-x(21)} height=${H-T-B} fill="#e5e6eb" opacity=".7"/><text x=${x(21)-4} y=${H-B-6} font-size=10 fill="#646a73" text-anchor=end>数据延迟·可能偏低</text>`;
 [525,585,645,705,765,825,885].forEach(m=>s+=`<text x=${tx(m)} y=${H-8} font-size=10 fill="#8f959e" text-anchor=middle>${fm(m)}</text>`);
 [].forEach(i=>s+=`<text x=${x(i)} y=${H-8} font-size=10 fill="#8f959e" text-anchor=middle>${lab(i)}</text>`);
-s+=`<line x1=${L} x2=${W-R} y1=${y(TH)} y2=${y(TH)} stroke="#f54a45" stroke-dasharray="5,4"/><text x=${L+4} y=${y(TH)-4} font-size=10 fill="#f54a45">阈值</text>`;
 s+=`<polyline fill=none stroke="#b8bec7" stroke-width=1.5 stroke-dasharray="4,3" points="${base.map((v,i)=>x(i)+','+y(v)).join(' ')}"/>`;
 s+=`<polygon fill="rgba(51,112,255,.08)" points="${x(0)},${y(0)} ${act.map((v,i)=>x(i)+','+y(v)).join(' ')} ${x(23)},${y(0)}"/><line x1=${L} x2=${L} y1=${T} y2=${H-B} stroke="#eee"/><text x=${L+4} y=${T+10} font-size=10 fill="#8f959e">条/15min</text>`;
 s+=`<polyline fill=none stroke="#3370ff" stroke-width=2 points="${act.slice(0,22).map((v,i)=>x(i)+','+y(v)).join(' ')}"/><polyline fill=none stroke="#3370ff" stroke-width=2 stroke-dasharray="5,4" points="${act.slice(21).map((v,i)=>x(i+21)+','+y(v)).join(' ')}"/>`;
