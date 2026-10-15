@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>报出卡片 v1</title>
+<style>
+body{margin:0;background:#f2f3f5;font-family:'PingFang SC','Segoe UI',Arial,sans-serif;color:#1f2329;font-size:14px}
+.wrap{width:720px;margin:20px auto}
+.ctl{display:flex;gap:16px;align-items:center;font-size:12px;color:#646a73;margin-bottom:10px}
+.ctl .seg{display:inline-flex;border:1px solid #d0d3d6;border-radius:6px;overflow:hidden}
+.ctl .seg button{border:0;background:#fff;padding:4px 10px;font-size:12px;cursor:pointer}
+.ctl .seg button.on{background:#3370ff;color:#fff}
+.card{background:#fff;border:1px solid #dee0e3;border-radius:8px;overflow:hidden}
+.hd{background:#fdf6dc;padding:12px 16px;font-size:16px;font-weight:600;color:#7a4b00}
+.bd{padding:12px 16px}
+.box{background:#f5f6f7;border-radius:6px;padding:10px 12px;line-height:1.8}
+.lab{font-weight:600}
+a,.lk{color:#3370ff;text-decoration:none;cursor:pointer}
+.at{color:#3370ff}
+.red{color:#f54a45}.green{color:#2ea121}.grey{color:#8f959e}
+.tag{display:inline-block;font-size:11px;padding:0 6px;border-radius:4px;line-height:18px;margin-left:6px;vertical-align:1px}
+.t-iter{background:#e1eaff;color:#245bdb}.t-new{background:#fde2e2;color:#d83931}.t-ev{background:#fff0d9;color:#c25e00}.t-fact{background:#e8f5e9;color:#2ea121}.t-guess{background:#f0f1f2;color:#646a73}
+h4{margin:14px 0 6px;font-size:15px}
+h5{margin:10px 0 4px;font-size:14px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+td,th{border:1px solid #e5e6eb;padding:4px 8px;text-align:left}th{background:#f5f6f7;font-weight:500}
+ul{margin:4px 0;padding-left:20px;line-height:1.75}li{margin-bottom:4px}
+.spin{display:inline-block;width:12px;height:12px;border:2px solid #c9cdd4;border-top-color:#3370ff;border-radius:50%;animation:s 1s linear infinite;vertical-align:-2px;margin-right:6px}
+@keyframes s{to{transform:rotate(360deg)}}
+.btns{display:flex;gap:10px;align-items:center;margin-top:14px;position:relative}
+.btn{border:1px solid #d0d3d6;background:#fff;border-radius:6px;padding:6px 14px;font-size:14px;cursor:pointer}
+.btn.pri{background:#3370ff;color:#fff;border-color:#3370ff}
+.dd{position:absolute;top:38px;left:100px;background:#fff;border:1px solid #dee0e3;border-radius:6px;box-shadow:0 4px 12px rgba(0,0,0,.1);display:none;z-index:2}
+.dd div{padding:6px 18px;cursor:pointer}.dd div:hover{background:#f2f3f5}
+.msgs{margin-top:18px}
+.msgs .ttl{font-size:13px;color:#646a73;margin-bottom:6px}
+.msg{background:#fff;border:1px solid #dee0e3;border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:13px;line-height:1.7}
+.msg .who{font-size:12px;color:#8f959e}
+</style></head><body><div class="wrap">
+<div class="ctl">原型控制：
+ <span>归因状态 <span class="seg" id="segA"><button class="on" data-v="pending">生成中</button><button data-v="done">已完成</button></span></span>
+ <span>查看者 <span class="seg" id="segR"><button class="on" data-v="owner">体验运营负责人</button><button data-v="other">其他成员</button></span></span>
+</div>
+<div class="card">
+<div class="hd">📈 P2【抖音VoC】基础产品·评论·其他「评论」问题反馈异常波动</div>
+<div class="bd">
+<div class="box">
+ <div><span class="lab">状态：</span><span class="green">跟进中</span>　<span class="lab">报出时间：</span>10.15 14:45　<span class="lab">止损时间：</span><span class="grey">未止损</span></div>
+ <div><span class="lab">跟进人：</span><span class="at">@贾怀羽</span>　<span class="lab">体验运营：</span><span class="at">@李超</span>　<span class="lab">研判专家：</span><span class="at">@王琪</span></div>
+ <div><span class="lab">反馈量 134 vs 基线 84，突增 <span class="red">60%</span></span>　<a class="grey" style="font-size:12px">报警机制 ›</a></div>
+</div>
+<h4>数据趋势 <span class="tag t-iter">迭代中</span><span class="grey" style="font-size:12px;font-weight:400;margin-left:8px">15分钟粒度 · 自动更新</span></h4>
+<div style="font-size:12px;color:#646a73"><span style="color:#3370ff">━</span> 实际反馈　<span style="color:#b8bec7">┅</span> 基线（同比）　<span style="color:#f54a45">┅</span> 阈值</div><svg id="chart" width="688" height="200"></svg>
+<div style="font-size:13px">拐点 <b>13:30</b>，反馈量 7 vs 基线 3，涨幅 <span class="red">133%</span>　<a>查看数据详情 ›</a></div>
+<h4>一句话结论</h4>
+<div>评论相关反馈 13:30 起持续高于基线，10.15 14:45 达阈值报出；<b>可能原因</b>：评论被吞、无法发布相关反馈集中出现，为新问题。</div>
+<h4>用户反馈</h4>
+<h5>原声AI总结</h5>
+<table><tr><th>问题分类</th><th>占比</th></tr>
+<tr><td>评论被吞 / 无法发布<span class="tag t-new">新问题</span></td><td>20%</td></tr>
+<tr><td>评论排序 / 最热评论查看</td><td>20%</td></tr>
+<tr><td>评论区艾特不到自己</td><td>20%</td></tr>
+<tr><td>评论区自动回复功能</td><td>20%</td></tr>
+<tr><td>账号关联解除</td><td>20%</td></tr></table>
+<h5>典型用户反馈</h5>
+<!-- 凭证标签（录屏/截图）为示例数据 -->
+<ul>
+<li><span class="tag t-ev" style="margin:0 6px 0 0">录屏</span>因评论被吞且无法发布、别人无法查看评论，要求平台告知违规情况并恢复功能。用户咨询点赞别人评论后刷新看不到点赞记录的问题。 <a>查看</a></li>
+<li><span class="tag t-ev" style="margin:0 6px 0 0">截图</span>如何查看最热评论。用户询问抖音app评论排序入口未开放，不更新版本能否看到排序。用户咨询抖音app消息页部分消息点不进去的原因。 <a>查看</a></li>
+<li>在任何评论区包括自己评论区艾特不到自己的解决办法。用户要求平台对上次未正确回复的问题给出正确回复并解决。 <a>查看</a></li>
+<li>开通抖音视频评论区自动回复功能的方法、自行开通自动回复功能是否违反平台规则以及转接企业号人工客服的方式。 <a>查看</a></li>
+<li>已不再使用抖音，希望客服取消手机号与抖音平台及相关平台的关联。用户已注销抖音账号，仍需关联才能在其他平台正常操作，希望客服取消关联。 <a>查看</a></li>
+</ul>
+<h4>归因诊断 <span class="grey" style="font-size:12px;font-weight:400">AI根据报警时刻（10.15 14:45）的反馈信息做归因，仅供参考</span></h4>
+<div id="attrP"><span class="spin"></span>归因中，预计 10 分钟后自动更新</div>
+<div id="attrD" style="display:none">
+<!-- 归因结论为示例数据 -->
+ <div><span class="tag t-fact" style="margin:0 6px 0 0">事实</span>13:30 起「评论被吞 / 无法发布」反馈集中出现，含录屏凭证。</div>
+ <div style="margin-top:4px"><span class="tag t-guess" style="margin:0 6px 0 0">推测</span>可能与评论发布审核策略变更有关　<span class="grey">相关性：高</span></div>
+</div>
+<a style="font-size:13px;display:inline-block;margin-top:4px">归因任务执行详情</a>
+<div class="btns" id="btns">
+ <button class="btn">合并群聊</button>
+ <button class="btn pri" id="stBtn">状态操作 ▾</button>
+ <span class="grey" style="font-size:12px">仅体验运营负责人可见</span>
+ <div class="dd" id="dd"><div>跟进中</div><div>已止损</div><div>已解决</div></div>
+</div>
+</div></div>
+<div class="msgs"><div class="ttl">发送机制示例（不再重发卡片）</div>
+<div class="msg"><div class="who">状态变更 · 一句话通知</div>「评论」问题反馈异常波动 状态更新：跟进中 → 已止损（止损时间 10.15 16:20）</div>
+<div class="msg"><div class="who">升级 · 透出具体原因</div>「评论」问题反馈异常波动 当前未止损，已超 SLA，升级加一 leader <span class="at">@王琪</span>　<a>查看详情 ›</a></div>
+<div class="msg"><div class="who">合并群聊 · 仅 @ 新进群成员</div>已合并至「评论」问题反馈异常波动应急群，<span class="at">@张霖霄</span> <span class="at">@尹增勇</span>（新进群）　<a>查看详情 ›</a></div>
+</div>
+</div>
+<script>
+// 示例数据：15分钟粒度，08:45-14:45 共24点；实际合计134，基线合计84
+const act=[3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,7,9,11,13,15,16];
+const base=[3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4];
+const TH=6, svg=document.getElementById('chart'), W=688,H=200,L=30,R=12,T=14,B=26;
+const x=i=>L+i*(W-L-R)/23, y=v=>T+(H-T-B)*(1-v/18);
+let s='';
+[0,6,12,18].forEach(v=>s+=`<line x1=${L} x2=${W-R} y1=${y(v)} y2=${y(v)} stroke="#eee"/><text x=${L-6} y=${y(v)+4} font-size=10 fill="#8f959e" text-anchor=end>${v}</text>`);
+const lab=i=>{let m=8*60+60+i*15;return String(m/60|0).padStart(2,'0')+':'+String(m%60).padStart(2,'0')};
+[0,4,8,12,16,20,23].forEach(i=>s+=`<text x=${x(i)} y=${H-8} font-size=10 fill="#8f959e" text-anchor=middle>${lab(i)}</text>`);
+s+=`<line x1=${L} x2=${W-R} y1=${y(TH)} y2=${y(TH)} stroke="#f54a45" stroke-dasharray="5,4"/><text x=${L+4} y=${y(TH)-4} font-size=10 fill="#f54a45">阈值</text>`;
+s+=`<polyline fill=none stroke="#b8bec7" stroke-width=1.5 stroke-dasharray="4,3" points="${base.map((v,i)=>x(i)+','+y(v)).join(' ')}"/>`;
+s+=`<polygon fill="rgba(51,112,255,.08)" points="${x(0)},${y(0)} ${act.map((v,i)=>x(i)+','+y(v)).join(' ')} ${x(23)},${y(0)}"/>`;
+s+=`<polyline fill=none stroke="#3370ff" stroke-width=2 points="${act.map((v,i)=>x(i)+','+y(v)).join(' ')}"/>`;
+s+=`<circle cx=${x(18)} cy=${y(7)} r=4 fill="#f54a45"/><text x=${x(18)-6} y=${y(7)-8} font-size=11 fill="#f54a45" text-anchor=end>拐点 13:30 · 7 (+133%)</text>`;
+s+=`<circle cx=${x(23)} cy=${y(16)} r=4 fill="#f54a45"/><text x=${x(23)-6} y=${y(16)-6} font-size=11 fill="#f54a45" text-anchor=end>报出 14:45</text>`;
+svg.innerHTML=s;
+function seg(id,f){const e=document.getElementById(id);e.onclick=ev=>{if(!ev.target.dataset.v)return;e.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b==ev.target));f(ev.target.dataset.v)}}
+seg('segA',v=>{attrP.style.display=v=='pending'?'':'none';attrD.style.display=v=='done'?'':'none'});
+seg('segR',v=>{btns.style.display=v=='owner'?'flex':'none'});
+stBtn.onclick=()=>dd.style.display=dd.style.display=='block'?'none':'block';
+dd.onclick=e=>{stBtn.textContent='状态操作：'+e.target.textContent+' ▾';dd.style.display='none'};
+</script></body></html>
