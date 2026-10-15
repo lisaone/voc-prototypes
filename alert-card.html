@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>报出卡片 v5</title>
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>报出卡片 v6</title>
 <style>
 body{margin:0;background:#f2f3f5;font-family:'PingFang SC','Segoe UI',Arial,sans-serif;color:#1f2329;font-size:14px}
 .wrap{width:720px;margin:20px auto}
@@ -47,7 +47,7 @@ ul{margin:4px 0;padding-left:20px;line-height:1.75}li{margin-bottom:4px}
 <div class="hd">📈 【处理进度：<span id="hdSt">跟进中</span>】-三级响应-P2-基础产品·评论·其他「评论」问题反馈异常波动</div>
 <div class="bd">
 <div class="box">
- <div><span class="lab">状态：</span><span class="green" id="stTxt">跟进中</span>　<span class="lab">开始时间：</span>10.15 14:45</div>
+ <div><span class="lab">状态：</span><span class="green" id="stTxt">跟进中</span>　<span class="lab">开始时间：</span>10.15 13:45</div>
  <div><span class="lab">跟进人：</span><span class="at">@贾怀羽</span>　<span class="lab">体验运营：</span><span class="at">@李超</span>　<span class="lab">研判专家：</span><span class="at">@王琪</span></div>
  <div><span class="lab">近6h累计 反馈量 134 vs 基线 84，突增 <span class="red">60%</span></span>　<a class="grey" style="font-size:12px">报警机制 ›</a></div>
 </div>
@@ -91,12 +91,12 @@ ul{margin:4px 0;padding-left:20px;line-height:1.75}li{margin-bottom:4px}
 </div>
 <script>
 // 示例数据：15分钟粒度，08:45-14:45 共24点；实际合计134，基线合计84
-const act=[3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,7,9,11,13,15,16];
+const act=[3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,7,14,22,24,3,1];
 const base=[3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4,3,4];
-const TH=6, svg=document.getElementById('chart'), W=688,H=200,L=30,R=12,T=14,B=26;
-const tx=m=>L+(m-525)*(W-L-R)/360, x=i=>tx(540+i*15), y=v=>T+(H-T-B)*(1-v/18);
+const TH=10, svg=document.getElementById('chart'), W=688,H=200,L=30,R=12,T=14,B=26;
+const tx=m=>L+(m-525)*(W-L-R)/360, x=i=>tx(540+i*15), y=v=>T+(H-T-B)*(1-v/26);
 let s='';
-[0,6,12,18].forEach(v=>s+=`<line x1=${L} x2=${W-R} y1=${y(v)} y2=${y(v)} stroke="#eee"/><text x=${L-6} y=${y(v)+4} font-size=10 fill="#8f959e" text-anchor=end>${v}</text>`);
+[0,8,16,24].forEach(v=>s+=`<line x1=${L} x2=${W-R} y1=${y(v)} y2=${y(v)} stroke="#eee"/><text x=${L-6} y=${y(v)+4} font-size=10 fill="#8f959e" text-anchor=end>${v}</text>`);
 const lab=i=>{let m=8*60+60+i*15;return String(m/60|0).padStart(2,'0')+':'+String(m%60).padStart(2,'0')};
 const fm=m=>String(m/60|0).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
 s+=`<rect x=${tx(865)} y=${T} width=${tx(885)-tx(865)} height=${H-T-B} fill="#e5e6eb" opacity=".7"/><text x=${tx(865)-4} y=${H-B-6} font-size=10 fill="#646a73" text-anchor=end>数据延迟·可能偏低</text>`;
@@ -107,7 +107,7 @@ s+=`<polyline fill=none stroke="#b8bec7" stroke-width=1.5 stroke-dasharray="4,3"
 s+=`<polygon fill="rgba(51,112,255,.08)" points="${x(0)},${y(0)} ${act.map((v,i)=>x(i)+','+y(v)).join(' ')} ${x(23)},${y(0)}"/><line x1=${L} x2=${L} y1=${T} y2=${H-B} stroke="#eee"/><text x=${L+4} y=${T+10} font-size=10 fill="#8f959e">条/15min</text>`;
 s+=`<polyline fill=none stroke="#3370ff" stroke-width=2 points="${act.slice(0,22).map((v,i)=>x(i)+','+y(v)).join(' ')}"/><polyline fill=none stroke="#3370ff" stroke-width=2 stroke-dasharray="5,4" points="${act.slice(21).map((v,i)=>x(i+21)+','+y(v)).join(' ')}"/>`;
 s+=`<circle cx=${x(18)} cy=${y(7)} r=4 fill="#f54a45"/><text x=${x(18)-6} y=${y(7)-8} font-size=11 fill="#f54a45" text-anchor=end>拐点 13:30 · 7 (+133%)</text>`;
-s+=`<circle cx=${x(23)} cy=${y(16)} r=4 fill="#f54a45"/><text x=${x(23)-8} y=${y(16)-10} font-size=11 fill="#f54a45" text-anchor=end>开始 14:45</text>`;
+s+=`<circle cx=${x(19)} cy=${y(14)} r=4 fill="#f54a45"/><text x=${x(19)-8} y=${y(14)-2} font-size=11 fill="#f54a45" text-anchor=end>开始 13:45</text>`;
 svg.innerHTML=s;
 function seg(id,f){const e=document.getElementById(id);e.onclick=ev=>{if(!ev.target.dataset.v)return;e.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b==ev.target));f(ev.target.dataset.v)}}
 seg('segA',v=>{attrP.style.display=v=='pending'?'':'none';attrD.style.display=v=='done'?'':'none'});
